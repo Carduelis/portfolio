@@ -1,0 +1,103 @@
+// get the page ready
+* { outline: none; box-sizing: border-box; }
+body { padding: 0; margin: 0; }
+// html, body, .react-native-web { height: 100%; width: 100%; position: absolute; top: 0; right: 0; overflow: hidden;}
+body, button, input {
+  font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-size: 1em;
+  color: @basic-dark;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin: .5em 0 .2em;
+  padding: .2em 0 .1em;
+}
+p {
+  margin: 0 0 .5em;
+}
+@pad: 1rem;
+@basic-light: rgba(15,30,50,.4);
+@basic-dark: rgb(15,30,50);
+@accent-light: rgba(30,76,109,.6);
+@accent-background-light: lighten(@accent-light,65%);
+// let the real CSS begin
+.react-native-web {
+  // justify-content: center;
+  // display: flex;
+  // flex-direction: column;
+  //
+  // .hello-world {
+  //   text-align: center;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  //   padding: 50%;
+  // }
+}
+.fade-enter {
+  background: red;
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  background: transparent;
+  transition: all 500ms ease-in;
+}
+.fade-appear {
+  background: red;
+  opacity: 0;
+}
+.fade-appear-active {
+  opacity: 1;
+  background: transparent;
+  transition: all 500ms ease-in;
+}
+.card {
+  padding: @pad;
+  border-radius: @pad/4;
+  margin: @pad;
+  box-shadow: 0 1px 1px rgba(0,0,0,.2);
+  border: 1px solid rgba(0,0,0,.1);
+  &-title {
+
+  }
+  &-description {
+    color: #999;
+  }
+  &-cover {
+
+  }
+}
+.input {
+  padding: @pad/2;
+  border: 1px solid @basic-light;
+  &:focus {
+    border-color: @accent-light;
+    background-color: @accent-background-light;
+  }
+}
+.input-row {
+  padding: @pad;
+  label {
+    font-size: .8em;
+    display: block;
+  }
+  input {
+
+  }
+}
+
+.btn {
+  padding: @pad/2 @pad;
+  border: 1px solid;
+  background: transparent;
+  border-radius: @pad/4;
+  cursor: pointer;
+  &:focus {
+
+  }
+  &:active {
+
+  }
+  &.loading {
+
+  }
+}
