@@ -21,7 +21,7 @@ export default class Card extends Component {
       );
     }
     if (title) {
-      cardContent.push(<h3 key="2" className="card-title">{title}</h3>);
+      cardContent.push(<h2 key="2" className="card-title">{title}</h2>);
     }
     if (description) {
       cardContent.push(<p key="3" className="card-description">{description}</p>);

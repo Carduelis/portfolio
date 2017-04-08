@@ -60,6 +60,7 @@ export function login(email, password) {
     });
   };
 }
+
 // export function login(email, password) {
 //   return dispatch => {
 //     firebase.auth().signInWithEmailAndPassword(email, password)

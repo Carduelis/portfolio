@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-hot-middleware/client',
+    // 'webpack-hot-middleware/client',
     'babel-polyfill',
     path.join(__dirname, '../../app/web/index'),
   ],
@@ -14,28 +14,47 @@ module.exports = {
     publicPath: '/',
   },
   module: {
-    loaders: [
-      // take all less files, compile them, and bundle them in with our js bundle
-      { test: /\.less$/, loader: 'style!css!autoprefixer?browsers=last 2 version!less' },
+    rules: [
       {
+        test: /\.less$/,
+        use: [
+            'style-loader',
+            'css-loader?sourceMap',
+            {
+              loader: 'autoprefixer-loader',
+              options: {
+                browsers: 'last 2 version'
+              }
+            },
+            'less-loader?sourceMap',
+        ]
+      }, {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react'],
-          plugins: [['react-transform', {
-            transforms: [{
-              transform: 'react-transform-hmr',
-              imports: ['react'],
-              // this is important for Webpack HMR:
-              locals: ['module']
-            }],
-          }]],
-        },
-      },
-      {
+        // exclude: /node_modules\/(?!(react-icons)\/).*/,
+        // exclude: function (modulePath) {
+        //   return /node_modules/.test(modulePath) &&
+        //       !/node_modules\/react-icons/.test(modulePath) &&
+        //       !/node_modules\/react-icons-base/.test(modulePath);
+        // },
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'react'],
+              plugins: [['react-transform', {
+                transforms: [{
+                  transform: 'react-transform-hmr',
+                  imports: ['react'],
+                  locals: ['module']
+                }]
+              }]]
+            }
+          }
+        ]
+      }, {
         test: /\.json$/,
-        loader: "json",
+        use: ['json-loader'],
       },
     ],
   },
@@ -46,8 +65,10 @@ module.exports = {
         PLATFORM_ENV: JSON.stringify('web'),
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
+    // new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NamedModulesPlugin(),
   ],
 };
