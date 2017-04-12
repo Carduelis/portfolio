@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 // dumb components
 import Header from '../components/Header';
+import Test from '../components/Test';
 import HelloWorld from '../components/HelloWorld';
 import ProjectsList from '../containers/ProjectsList';
 // actions
@@ -17,6 +18,7 @@ class ReactNativeWebHelloWorld extends Component {
 
     return (
       <div className="react-native-web">
+        <Test />
         <Header />
         <ProjectsList />
         <HelloWorld

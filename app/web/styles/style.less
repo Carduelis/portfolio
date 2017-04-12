@@ -1,11 +1,17 @@
 // get the page ready
 * { outline: none; box-sizing: border-box; }
-body { padding: 0; margin: 0; }
+body { padding: 0; margin: 0; background: #ccc;}
 // html, body, .react-native-web { height: 100%; width: 100%; position: absolute; top: 0; right: 0; overflow: hidden;}
 body, button, input {
-  font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-family: 'PT Sans', "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
   font-size: 1em;
   color: @basic-dark;
+}
+.dotted() {
+  border-bottom: 1px dotted;
+}
+.dashed() {
+  border-bottom: 1px dashed;
 }
 h1,h2,h3,h4,h5,h6 {
   margin: .5em 0 .2em;
@@ -26,6 +32,9 @@ p {
 @accent-background-light: lighten(@accent-light,65%);
 // let the real CSS begin
 .react-native-web {
+  margin-right: 360px;
+  background: #fff;
+  padding-top: 1px;
   // justify-content: center;
   // display: flex;
   // flex-direction: column;
@@ -55,22 +64,6 @@ p {
   background: transparent;
   transition: all 500ms ease-in;
 }
-.card {
-  padding: @pad;
-  border-radius: @pad/4;
-  margin: @pad;
-  box-shadow: 0 1px 1px rgba(0,0,0,.2);
-  border: 1px solid rgba(0,0,0,.1);
-  &-title {
-
-  }
-  &-description {
-    color: #999;
-  }
-  &-cover {
-
-  }
-}
 .input {
   padding: @pad/2;
   border: 1px solid @basic-light;
@@ -89,7 +82,42 @@ p {
 
   }
 }
+.tags-group {
+  font-size: .85em;
+  .tag {
+    font-size: 1em;
+    &:last-child::after {
+      content: '';
+    }
+    &::after {
+      content: ','
+    }
+  }
+}
+.tags-icon {
+  @mainShift: .3em;
+  @shadowShift: .1em;
+  @centeringPad: -(@mainShift+@shadowShift)/2;
+  svg {
+    &:nth-of-type(1) {
+      margin-left: @centeringPad;
+    }
+    &:nth-of-type(2) {
+      margin-left: @mainShift - 1em;
+    }
+    &:nth-of-type(3) {
+      margin-left: @shadowShift - 1em;
+      margin-right: @centeringPad;
+    }
+  }
+}
 .tag {
+  margin-right: .3em;
+  font-size: .85em;
+  .text {
+    margin-left: .4em;
+    .dashed();
+  }
 }
 .btn {
   margin: @pad/2;
@@ -159,3 +187,4 @@ p {
 }
 
 @import "kek.less";
+@import "card.less";

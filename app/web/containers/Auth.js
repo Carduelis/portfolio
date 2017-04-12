@@ -2,15 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MdAdd from 'react-icons/lib/md/add';
 import Button from '../components/Button';
+import Tag from '../components/Tag';
+import Tags from '../components/Tags';
 
 import { login, logout } from '../../actions/firebase';
 
 class Header extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.onInputChange = this.onInputChange.bind(this);
     this.state = {
       login: '',
-      password: ''
+      password: '',
+      tags: [
+        { label: 'kek', id: 1234 },
+        { label: 'lkek', id: 1235 },
+        { label: 'ksdfek', id: 1236 },
+      ]
     };
   }
   componentWillMount() {
@@ -24,13 +32,21 @@ class Header extends Component {
     e.preventDefault();
     this.props.logout();
   }
+  onTagClick(sev, ev, tag) {
+    console.log(sev, ev, tag);
+  }
+  onInputChange(ev) {
+    const statePart = {};
+    statePart[ev.target.name] = ev.target.value;
+    this.setState(statePart);
+  }
   render() {
     return (
       <form onSubmit={e => this.login(e)}>
         <div className="input-row">
           <label htmlFor="login">Email</label>
           <input
-            onChange={e => this.setState({ login: e.target.value })}
+            onChange={this.onInputChange}
             className="input"
             name="login"
             type="text"
@@ -40,7 +56,7 @@ class Header extends Component {
         <div className="input-row">
           <label htmlFor="password">Password</label>
           <input
-            onChange={e => this.setState({ password: e.target.value })}
+            onChange={this.onInputChange}
             className="input"
             name="password"
             type="password"
@@ -48,6 +64,8 @@ class Header extends Component {
           />
         </div>
         <div className="input-row" style={{ width: 500 }}>
+          <Tag label="Тэг" handleClick={this.onTagClick} />
+          <Tags tags={this.state.tags} handleClick={this.onTagClick} />
           <Button
             fill
             type="success"

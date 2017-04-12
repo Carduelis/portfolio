@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 export default class Card extends Component {
   render() {
+    console.log(Link)
     const transition = {
       transitionName: 'fade',
       transitionEnterTimeout: 500,
@@ -11,17 +13,23 @@ export default class Card extends Component {
       transitionAppear: true,
       transitionAppearTimeout: 300
     };
-    const { cover, title, description, children } = this.props;
+    const { cover, title, description, children, linkTo } = this.props;
     const cardContent = [];
     if (cover) {
       cardContent.push(
-        <div className="card-cover">
-          <img key="1" className="card-cover-img" src={cover} alt="{title}" title={title} />
+        <div key="1" className="card-cover">
+          <img className="card-cover-img" src={cover} alt={title} title={title} />
         </div>
       );
     }
     if (title) {
-      cardContent.push(<h2 key="2" className="card-title">{title}</h2>);
+      const jsx = <h2 key="2" className="card-title">{title}</h2>
+      if (linkTo) {
+        // cardContent.push(<Link to="kk">{jsx}</Link>);
+        cardContent.push(jsx);
+      } else {
+        cardContent.push(jsx);
+      }
     }
     if (description) {
       cardContent.push(<p key="3" className="card-description">{description}</p>);
