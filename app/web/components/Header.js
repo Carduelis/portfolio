@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Card from './Card';
-import Auth from '../containers/Auth';
+import HeaderBar from './HeaderBar';
 import { login, logout } from '../../actions/firebase';
 
 class Header extends Component {
-  login(e) {
-    e.preventDefault();
-    this.props.login('pavepy@gmail.com', 'sx9UkQFpFirebase');
-  }
-  doLogout(e) {
-    e.preventDefault();
-    this.props.logout();
-  }
   render() {
+    const barProps = {
+      headerText: 'Главная',
+      left: {
+
+      },
+      right: {
+
+      }
+    };
     return (
       <div className="header">
-        <Card title="Проект" description="Мой первый проект">
-          <Auth />
-        </Card>
+        <HeaderBar {...barProps} />
       </div>
     );
   }

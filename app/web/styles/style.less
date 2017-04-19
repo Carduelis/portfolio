@@ -32,9 +32,7 @@ p {
 @accent-background-light: lighten(@accent-light,65%);
 // let the real CSS begin
 .react-native-web {
-  margin-right: 360px;
   background: #fff;
-  padding-top: 1px;
   // justify-content: center;
   // display: flex;
   // flex-direction: column;
@@ -120,16 +118,26 @@ p {
   }
 }
 .btn {
-  margin: @pad/2;
   padding: @pad/2 @pad;
   color: @basic;
-  border: 1px solid;
+  border: none;
   background-color: transparent;
   border-radius: @pad/4;
   cursor: pointer;
   line-height: 1.2em;
+  position: relative;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+  &-bordered {
+    border: 1px solid;
+  }
+  span {
+    //
+  }
   svg {
     margin: -.15em .4em 0 -.4em;
+    &:last-of-type {
+      margin: 0;
+    }
   }
   &-fill {
     color: #fff;
@@ -139,7 +147,7 @@ p {
 
   }
   &:active {
-    box-shadow: inset 0 2px 2px rgba(0,0,0,.2), inset 0 0 1px rgba(0,0,0,.2);
+    // box-shadow: inset 0 2px 2px rgba(0,0,0,.2), inset 0 0 1px rgba(0,0,0,.2);
   }
   &.loading {
 
@@ -188,3 +196,4 @@ p {
 
 @import "kek.less";
 @import "card.less";
+@import "headerBar.less";

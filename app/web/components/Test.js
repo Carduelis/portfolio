@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Card from '../components/Card';
-import Tags from '../components/Tags';
+import Card from '../common/Card';
+import Tags from '../common/Tags';
 
 export default class Test extends Component {
   constructor(props) {

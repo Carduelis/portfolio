@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MdAdd from 'react-icons/lib/md/add';
-import Button from '../components/Button';
-import Tag from '../components/Tag';
-import Tags from '../components/Tags';
+import Button from '../common/Button';
+import Tag from '../common/Tag';
+import Tags from '../common/Tags';
 
 import { login, logout } from '../../actions/firebase';
 

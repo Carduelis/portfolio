@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Box, Columns, Icons, Button } from 'grommet';
+import Button from '../common/Button';
+import Card from '../common/Card';
 import { fetchProjects } from '../../actions/firebase';
 // import Card from '../components/Card';
 
@@ -17,12 +18,11 @@ class ProjectsList extends Component {
     console.log(this.props.projects);
     const projectsData = this.props.projects;
     return projectsData.map(project => (
-        <Box key={project.title} direction="row">
           <Card
-            heading={project.title}
+            key={project.title}
+            title={project.title}
             description={project.description}
           />
-        </Box>
       )
     );
   }
@@ -30,23 +30,10 @@ class ProjectsList extends Component {
   render() {
     return (
       <div>
-        <Columns justify="center" size="small">
+        <div>
           {this.renderProjects()}
-        </Columns>
-        <Box
-          pad='medium'
-          colorIndex='light-2'
-        >
-          <Button
-            icon={<Icons.Base.Add />}
-            label='Label'
-            onClick={e => this.onAddProject(e)}
-            plain={false}
-            accent={false}
-            secondary={false}
-            primary={false}
-          />
-        </Box>
+        </div>
+        <Button />
       </div>
     );
   }

@@ -1,10 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // dumb components
 import Header from '../components/Header';
 import Test from '../components/Test';
+import Card from '../common/Card';
+import Auth from '../containers/Auth';
 import HelloWorld from '../components/HelloWorld';
 import ProjectsList from '../containers/ProjectsList';
+import DevTools from './DevTools';
 // actions
 import {
   toggleColor
@@ -18,13 +22,17 @@ class ReactNativeWebHelloWorld extends Component {
 
     return (
       <div className="react-native-web">
-        <Test />
         <Header />
+        <Test />
+        <Card title="Проект" description="Мой первый проект">
+          <Auth />
+        </Card>
         <ProjectsList />
         <HelloWorld
           onClick={() => dispatch(toggleColor())}
           color={color}
         />
+        {!window.__REDUX_DEVTOOLS_EXTENSION__ && <DevTools />}
       </div>
     );
   }
