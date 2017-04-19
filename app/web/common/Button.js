@@ -21,7 +21,7 @@ export default class Button extends Component {
     if (props.styles) {
       props.styles.map(classPart => className.push(classPart));
     }
-    
+
     return (
       <button
         className={className.getClass()}
