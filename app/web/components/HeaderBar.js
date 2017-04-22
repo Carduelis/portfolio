@@ -18,8 +18,9 @@ export default class HeaderBar extends Component {
       transparent: true,
     };
     const { props } = this;
-    const menuIcon = <MdMenu size={32} />;
-    const searchIcon = <MdSearch size={32} />;
+    const leftIcon = props.left.icon ? <props.left.icon size={32} /> : <MdMenu size={32} />;
+    const rightIcon = props.right.icon ? <props.right.icon size={32} /> : <MdSearch size={32} />;
+
     return (
       <div className="header-bar-substrate">
         <div className="header-bar fixed">
@@ -27,7 +28,7 @@ export default class HeaderBar extends Component {
             <Button
               {...buttonProps}
               handleClick={props.left.handleClick}
-              icon={props.left.icon || menuIcon}
+              icon={leftIcon}
             />
           }
           <h2>{props.headerText}</h2>
@@ -35,7 +36,7 @@ export default class HeaderBar extends Component {
             <Button
               {...buttonProps}
               handleClick={props.right.handleClick}
-              icon={props.right.icon || searchIcon}
+              icon={rightIcon}
             />
           }
         </div>

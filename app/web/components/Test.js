@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import MdAdd from 'react-icons/lib/md/add';
 import Card from '../common/Card';
+import Tag from '../common/Tag';
 import Tags from '../common/Tags';
+import Button from '../common/Button';
 
 export default class Test extends Component {
   constructor(props) {
@@ -39,6 +42,25 @@ export default class Test extends Component {
           >
             <Tags tags={this.state.tags} />
           </Card>
+          <Tag label="Тэг" handleClick={this.onTagClick} />
+          <Tags tags={this.state.tags} handleClick={this.onTagClick} />
+          <Button
+            fill
+            type="success"
+            size="lg"
+            label="Kesdfsk"
+            handleClick={(e) => console.log(e.currentTarget.type)}
+          />
+          <button className="btn" type="submit">Кексимус максимус</button>
+          <button className="btn btn-danger">Удалить</button>
+          <button className="btn btn-success"><MdAdd />Создать</button>
+          <button className="btn btn-warning">Уверены?</button>
+          <button className="btn btn-lg"><MdAdd />Big Passion Button</button>
+          <button className="btn btn-sm"><MdAdd />Little But</button>
+          <button className="btn btn-fill">Basic filled</button>
+          <button className="btn btn-accent">Важная кнопка</button>
+          <button className="btn btn-fill btn-success">Создать</button>
+          <button className="btn" type="submit">Кексимус максимус</button>
       </form>
     );
   }

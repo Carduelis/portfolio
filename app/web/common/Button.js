@@ -29,7 +29,7 @@ export default class Button extends Component {
         type={htmlType}
         {...attrs}
       >
-        <Ink background={false} />
+        <Ink />
         {props.icon}
         {props.label && <span>{props.label}</span>}
         {props.children}

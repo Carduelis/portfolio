@@ -7,6 +7,9 @@ export const FIREBASE_CONFIG = {
   storageBucket: 'portfolio-8cacc.appspot.com',
   messagingSenderId: '425730587751'
 };
+export const AUTH_MODAL = 'AUTH_MODAL';
+export const USER_EXISTS = 'USER_EXISTS';
+export const USER_EXISTS_ERROR = 'USER_EXISTS_ERROR';
 export const AUTH_LOGIN = 'AUTH_LOGIN';
 export const AUTH_LOGIN_ERROR = 'AUTH_LOGIN_ERROR';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';

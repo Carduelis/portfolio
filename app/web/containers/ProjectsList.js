@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from '../common/Button';
 import Card from '../common/Card';
-import { fetchProjects } from '../../actions/firebase';
+import { fetchProjects, addProject } from '../../actions/firebase';
 // import Card from '../components/Card';
 
 class ProjectsList extends Component {
@@ -10,12 +10,10 @@ class ProjectsList extends Component {
     this.props.fetchProjects();
   }
   onAddProject(e) {
-    console.log(e, this);
+    this.props.addProject();
   }
 
   renderProjects() {
-    console.log(Card, ProjectsList);
-    console.log(this.props.projects);
     const projectsData = this.props.projects;
     return projectsData.map(project => (
           <Card
@@ -26,14 +24,13 @@ class ProjectsList extends Component {
       )
     );
   }
-
   render() {
     return (
       <div>
         <div>
           {this.renderProjects()}
         </div>
-        <Button />
+        <Button handleClick={this.onAddProject} />
       </div>
     );
   }
@@ -45,4 +42,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchProjects })(ProjectsList);
+export default connect(mapStateToProps, { fetchProjects, addProject })(ProjectsList);

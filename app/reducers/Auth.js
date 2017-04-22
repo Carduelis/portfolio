@@ -1,4 +1,7 @@
 import {
+  AUTH_MODAL,
+  USER_EXISTS,
+  USER_EXISTS_ERROR,
   AUTH_LOGIN,
   AUTH_LOGIN_ERROR,
   AUTH_LOGOUT,
@@ -6,6 +9,13 @@ import {
 
 export default function (state = {}, action) {
   switch (action.type) {
+    case AUTH_MODAL:
+      return Object.assign({}, state, action.payload);
+
+    case USER_EXISTS:
+    case USER_EXISTS_ERROR:
+      return Object.assign({}, state, action.payload);
+
     case AUTH_LOGIN:
     case AUTH_LOGIN_ERROR:
       // we cant change state via push

@@ -5,7 +5,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class Card extends Component {
   render() {
-    console.log(Link)
     const transition = {
       transitionName: 'fade',
       transitionEnterTimeout: 500,

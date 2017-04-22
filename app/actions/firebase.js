@@ -2,6 +2,9 @@ import firebase from 'firebase';
 import {
   FETCH_PROJECTS,
   FIREBASE_CONFIG,
+  USER_EXISTS,
+  USER_EXISTS_ERROR,
+  AUTH_MODAL,
   AUTH_LOGIN,
   AUTH_LOGIN_ERROR,
   AUTH_LOGOUT,
@@ -28,6 +31,33 @@ export function logout() {
   };
 }
 
+export function checkUserAuthenication() {
+  return dispatch => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            dispatch({
+              type: USER_EXISTS,
+              payload: user
+            });
+        } else {
+          dispatch({
+            type: USER_EXISTS_ERROR,
+            payload: {
+              login: false
+            },
+          });
+        }
+    });
+  };
+}
+
+export function authModalToggle(state) {
+  return {
+    type: AUTH_MODAL,
+    payload: state
+  }
+}
+
 export function fetchProjects() {
   return dispatch => {
     console.warn('fetching started');
@@ -39,6 +69,12 @@ export function fetchProjects() {
         payload: snapshot.val()
       });
     });
+  };
+}
+
+export function addProject() {
+  return dispatch => {
+
   };
 }
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // dumb components
-import Header from '../components/Header';
+import Header from '../containers/Header';
+import AuthModal from '../containers/AuthModal';
 import Test from '../components/Test';
 import Card from '../common/Card';
 import Auth from '../containers/Auth';
@@ -13,9 +14,10 @@ import DevTools from './DevTools';
 import {
   toggleColor
 } from '../../actions/actions';
+// actions
 
 /** The app entry point */
-class ReactNativeWebHelloWorld extends Component {
+class App extends Component {
   render() {
     // injected by connect call
     const { dispatch, color, data } = this.props;
@@ -32,19 +34,20 @@ class ReactNativeWebHelloWorld extends Component {
           onClick={() => dispatch(toggleColor())}
           color={color}
         />
+        <AuthModal />
         {!window.__REDUX_DEVTOOLS_EXTENSION__ && <DevTools />}
       </div>
     );
   }
 }
 
-ReactNativeWebHelloWorld.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired,
+App.propTypes = {
+  // dispatch: PropTypes.func.isRequired,
+  // color: PropTypes.string.isRequired,
   // data: PropTypes.object.isRequired,
 };
 
 const select = state => state;
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(ReactNativeWebHelloWorld);
+export default connect(select)(App);

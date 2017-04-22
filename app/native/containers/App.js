@@ -11,10 +11,10 @@ import {
 } from '../../actions/actions';
 
 /** The app entry point */
-class ReactNativeWebHelloWorld extends Component {
+class App extends Component {
   render() {
     // injected by connect call
-    const {dispatch, color, data} = this.props;
+    const { dispatch, color, data } = this.props;
 
     return (
       <View style={appStyle.reactNativeWeb}>
@@ -28,7 +28,7 @@ class ReactNativeWebHelloWorld extends Component {
   }
 }
 
-ReactNativeWebHelloWorld.propTypes = {
+App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
@@ -37,4 +37,4 @@ ReactNativeWebHelloWorld.propTypes = {
 const select = state => state;
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(ReactNativeWebHelloWorld);
+export default connect(select)(App);
