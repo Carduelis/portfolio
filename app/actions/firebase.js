@@ -86,12 +86,12 @@ export function login(email, password) {
       const { uid, displayName, photoURL, email, emailVerified, providerData } = snapshot;
       dispatch({
           type: AUTH_LOGIN,
-          payload: { uid, displayName, photoURL, email, emailVerified, providerData }
+          payload: { login: true, uid, displayName, photoURL, email, emailVerified, providerData }
       });
     }).catch(error => {
       dispatch({
           type: AUTH_LOGIN_ERROR,
-          payload: error
+          payload: {login: false, ...error}
       });
     });
   };

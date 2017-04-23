@@ -7,7 +7,7 @@ import {
   AUTH_LOGOUT,
   AUTH_LOGOUT_ERROR } from '../constants';
 
-export default function (state = {}, action) {
+export default function (state = { login: false }, action) {
   switch (action.type) {
     case AUTH_MODAL:
       return Object.assign({}, state, action.payload);

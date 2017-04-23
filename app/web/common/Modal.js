@@ -38,7 +38,7 @@ export default class Modal extends Component {
             <div className="modal-window">
               <header className="modal-header">
                 <h3 className="modal-title">{title}</h3>
-                  <Ink />
+                
                 <span className="modal-close">
                   <Button icon={<MdClose />} handleClick={this.close} />
                 </span>
