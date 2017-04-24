@@ -18,8 +18,8 @@ export default class HeaderBar extends Component {
       transparent: true,
     };
     const { props } = this;
-    const leftIcon = props.left.icon ? <props.left.icon size={32} /> : <MdMenu size={32} />;
-    const rightIcon = props.right.icon ? <props.right.icon size={32} /> : <MdSearch size={32} />;
+    props.left.icon = props.left.icon ? <props.left.icon size={32} /> : <MdMenu size={32} />;
+    props.right.icon = props.right.icon ? <props.right.icon size={32} /> : <MdSearch size={32} />;
 
     return (
       <div className="header-bar-substrate">
@@ -27,16 +27,14 @@ export default class HeaderBar extends Component {
           {props.left &&
             <Button
               {...buttonProps}
-              handleClick={props.left.handleClick}
-              icon={leftIcon}
+              {...props.left}
             />
           }
           <h2>{props.headerText}</h2>
           {props.right &&
             <Button
               {...buttonProps}
-              handleClick={props.right.handleClick}
-              icon={rightIcon}
+              {...props.right}
             />
           }
         </div>

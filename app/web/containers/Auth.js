@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from '../common/Button';
 
-import { login, logout } from '../../actions/firebase';
+import { login } from '../../actions/firebase';
 
 class Header extends Component {
   constructor(props) {
@@ -11,39 +11,32 @@ class Header extends Component {
     this.state = {
       login: '',
       password: '',
-      tags: [
-        { label: 'kek', id: 1234 },
-        { label: 'lkek', id: 1235 },
-        { label: 'ksdfek', id: 1236 },
-      ]
+      loading: false
     };
   }
   componentWillMount() {
     console.log(this);
-  }
-  login(e) {
-    e.preventDefault();
-    this.props.login(this.state.login, this.state.password);
-  }
-  logout(e) {
-    e.preventDefault();
-    this.props.logout();
-  }
-  onTagClick(sev, ev, tag) {
-    console.log(sev, ev, tag);
   }
   onInputChange(ev) {
     const statePart = {};
     statePart[ev.target.name] = ev.target.value;
     this.setState(statePart);
   }
+  login(e) {
+    e.preventDefault();
+    this.setState({
+      loading: true
+    });
+    this.props.login(this.state.login, this.state.password);
+  }
   render() {
     return (
-      <form onSubmit={e => this.login(e)}>
+      <form onSubmit={e => this.login(e)} className={this.state.loading && "loading"}>
         <div className="input-row">
           <label htmlFor="login">Email</label>
           <input
             onChange={this.onInputChange}
+            autoFocus={true}
             className="input"
             name="login"
             type="text"
@@ -61,14 +54,12 @@ class Header extends Component {
           />
         </div>
         <div className="input-row" style={{ width: 500 }}>
-          <button className="btn" type="submit">
-          Login
-          </button>
-
-          <button className="btn" type="button" onClick={e => this.logout(e)}>
-            Logout
-
-          </button>
+          <Button
+            loading={this.state.loading}
+            fill
+            submit
+            label="Login"
+          />
         </div>
       </form>
     );
@@ -80,4 +71,4 @@ function mapStateToProps(state) {
     state: state.kek
   };
 }
-export default connect(mapStateToProps, { logout, login })(Header);
+export default connect(mapStateToProps, { login })(Header);

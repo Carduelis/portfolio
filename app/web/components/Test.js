@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MdAdd from 'react-icons/lib/md/add';
 import Card from '../common/Card';
+import AuthFork from '../hoc/AuthFork';
 import Tag from '../common/Tag';
 import Tags from '../common/Tags';
 import Button from '../common/Button';
@@ -33,15 +34,16 @@ export default class Test extends Component {
     // <Link to="kek">sdjhdfkhjdfkjh</Link>
   }
   render() {
+    const CardWhenAuthorized = AuthFork(Card);
     return (
       <form onSubmit={e => this.login(e)}>
-          <Card
-            cover="http://placecage.com/200/100"
-            title="Новость"
-            linkTo="kek"
-          >
-            <Tags tags={this.state.tags} />
-          </Card>
+        <CardWhenAuthorized
+          cover="http://placecage.com/200/100"
+          title="Новость"
+          linkTo="kek"
+        >
+          <Tags tags={this.state.tags} />
+        </CardWhenAuthorized>
           <Tag label="Тэг" handleClick={this.onTagClick} />
           <Tags tags={this.state.tags} handleClick={this.onTagClick} />
           <Button

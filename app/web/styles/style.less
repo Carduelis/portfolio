@@ -124,6 +124,17 @@ p {
     .dashed();
   }
 }
+@keyframes leftToRight {
+    0% {
+      transform: translateX(-200%) scale(1,1);
+    }
+    50% {
+      transform: translateX(0%) scale(2.2,1);
+    }
+    100% {
+      transform: translateX(200%) scale(1,1);
+    }
+}
 .btn {
   padding: @pad/2 @pad;
   color: @basic;
@@ -137,8 +148,41 @@ p {
   &-bordered {
     border: 1px solid;
   }
+  &-loading {
+    .label {
+      transform: scale(.5);
+      transform-origin: 100% 100%;
+    }
+  }
+  .loading-label {
+    position: absolute;
+  }
+  .loading-bar {
+    .position(absolute, 50%, @pad/2, auto, @pad/2);
+    height: 4px;
+    border-radius: 2px;
+    margin-top: -6px;
+    background: rgba(255,255,255,.5);
+    &::before {
+      .position(absolute, 0, 40%, 0, 40%);
+      border-radius: inherit;
+      background: inherit;
+      display: block;
+      content: '';
+      animation-name: leftToRight;
+      animation-timing-function: ease-in-out;
+      animation-timing-function: linear;
+      animation-duration: .3s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+    &::after {
+
+    }
+  }
   span {
-    //
+    display: block;
+    transition: 300ms all;
   }
   svg {
     margin: -.15em .4em 0 -.4em;

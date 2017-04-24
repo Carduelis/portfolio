@@ -12,15 +12,11 @@ class Header extends Component {
   openNavigationBar() {
     console.log('openNavigationBar');
   }
-  doSearch() {
-    console.log('doSearch');
-  }
   signIn() {
-    console.log(this);
+    console.log('signIn');
     this.props.authModalToggle({
       show: true
     });
-    console.log('signIn');
   }
   render() {
     const { props } = this;
@@ -31,8 +27,9 @@ class Header extends Component {
         handleClick: this.openNavigationBar
       },
       right: {
-        icon: isLogged ? false : MdAuth,
-        handleClick: isLogged ? this.doSearch : this.signIn
+        icon: isLogged ? MdAuth : MdAuth,
+        handleClick: isLogged ? this.props.logout : this.signIn,
+        label: isLogged ? props.auth.email : null
       }
     };
     return (

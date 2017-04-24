@@ -37,14 +37,12 @@ export function checkUserAuthenication() {
         if (user) {
             dispatch({
               type: USER_EXISTS,
-              payload: user
+              payload: { login: true, ...user.toJSON() }
             });
         } else {
           dispatch({
             type: USER_EXISTS_ERROR,
-            payload: {
-              login: false
-            },
+            payload: { login: false },
           });
         }
     });
@@ -55,7 +53,7 @@ export function authModalToggle(state) {
   return {
     type: AUTH_MODAL,
     payload: state
-  }
+  };
 }
 
 export function fetchProjects() {
@@ -84,14 +82,18 @@ export function login(email, password) {
     const authPromise = firebase.auth().signInWithEmailAndPassword(email, password);
     authPromise.then(snapshot => {
       const { uid, displayName, photoURL, email, emailVerified, providerData } = snapshot;
+      const payload = { login: true, uid, displayName, photoURL, email, emailVerified, providerData };
+      console.debug(payload);
       dispatch({
           type: AUTH_LOGIN,
-          payload: { login: true, uid, displayName, photoURL, email, emailVerified, providerData }
+          payload
       });
     }).catch(error => {
+      const payload = { login: false, ...error };
+      console.debug(payload);
       dispatch({
           type: AUTH_LOGIN_ERROR,
-          payload: {login: false, ...error}
+          payload
       });
     });
   };

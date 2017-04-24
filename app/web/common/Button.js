@@ -18,6 +18,12 @@ export default class Button extends Component {
     if (props.filled || props.fill) {
       className.push('fill');
     }
+    if (props.loading === true) {
+      className.push('loading');
+      attrs.disabled = true;
+    } else {
+      delete attrs.disabled;
+    }
     if (props.styles) {
       props.styles.map(classPart => className.push(classPart));
     }
@@ -31,7 +37,8 @@ export default class Button extends Component {
       >
         <Ink />
         {props.icon}
-        {props.label && <span>{props.label}</span>}
+        {props.loading && <span className="loading-bar" />}
+        {props.label && <span className="label">{props.label}</span>}
         {props.children}
       </button>
     );

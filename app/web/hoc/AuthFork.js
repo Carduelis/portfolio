@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export default function(ComposedComponent, options) {
+export default function (ComposedComponent, options = {}) {
   class AuthFork extends Component {
     render() {
-      console.log(this.props);
+      console.log(this.props, this.state, this);
       if (this.props.authenticated) {
         return (
           <ComposedComponent {...this.props} />
         );
-      } else {
-        return (
-          <div>
-            Для просмотра необходимо авторизоваться
-          </div>
-        );
-      };
+      }
+      if (options.replacementComponent === true) {
+          return (<div>Для просмотра необходимо авторизоваться</div>);
+      } else if (options.replacementComponent) {
+          return (<options.replacementComponent {...this.props} />);
+      }
+      return null;
     }
   }
   function mapStateToProps(state) {
     return {
-      state: state.auth.login
-    }
+      authenticated: state.auth.login
+    };
   }
   return connect(mapStateToProps)(AuthFork);
 }
