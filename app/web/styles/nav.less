@@ -1,3 +1,44 @@
-.nav-item {
-  padding: @pad;
+.nav-list {
+  border-top: 1px solid rgba(0,0,0,.1);
 }
+.nav-item {
+  overflow: hidden;
+  padding: @pad;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  .label {
+    word-break: break-all;
+    display: block;
+    padding-right: 1em;
+    flex-basis: 100%;
+  }
+  &-link {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+  &-header {
+    font-size: .85em;
+    padding-bottom: @pad*0.5;
+    opacity: .6;
+  }
+  &-active {
+    font-weight: bold;
+  }
+  &-group {
+    font-weight: bold;
+    margin: @pad 0;
+    border-bottom: none;
+  }
+}
+//
+// <List>
+//   <item type="link"></item>
+//   <item type="group"></item>
+//   <group>
+//     <title>
+//     <list>
+//       <item></item>
+//     </list>
+//   </group>
+// </List>

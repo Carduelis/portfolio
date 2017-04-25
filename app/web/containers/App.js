@@ -8,7 +8,9 @@ import Test from '../components/Test';
 import Card from '../common/Card';
 import Auth from '../containers/Auth';
 import HelloWorld from '../components/HelloWorld';
-import NavList from '../common/NavList';
+
+import NavListContainer from '../containers/NavListContainer';
+
 import ProjectsList from '../containers/ProjectsList';
 import DevTools from './DevTools';
 // actions
@@ -27,7 +29,7 @@ class App extends Component {
       <div className="react-native-web">
         <Header />
         <Test />
-        <NavList />
+        <NavListContainer />
         <Card title="Проект" description="Мой первый проект">
           <Auth />
         </Card>
