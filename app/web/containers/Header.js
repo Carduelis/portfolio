@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MdAuth from 'react-icons/lib/md/account-circle';
+import MdLoop from 'react-icons/lib/md/loop';
+
+import SpinIt from '../hoc/SpinIt';
 import HeaderBar from '../components/HeaderBar';
-import { login, logout, authModalToggle } from '../../actions/firebase';
+import { login, authModalToggle } from '../../actions/firebase';
 
 class Header extends Component {
   constructor(props) {
@@ -20,16 +23,16 @@ class Header extends Component {
   }
   render() {
     const { props } = this;
-    const isLogged = !(props.auth.login === false);
+    const { isAuthenticated, isFetching, user } = props.auth;
     const barProps = {
       headerText: 'Главная',
       left: {
         handleClick: this.openNavigationBar
       },
       right: {
-        icon: isLogged ? MdAuth : MdAuth,
-        handleClick: isLogged ? this.props.logout : this.signIn,
-        label: isLogged ? props.auth.email : null
+        icon: isFetching ? SpinIt(MdLoop) : MdAuth,
+        handleClick: this.signIn,
+        label: isAuthenticated ? user.email : null
       }
     };
     return (
@@ -46,4 +49,4 @@ function mapStateToProps(state) {
     auth: state.auth
   };
 }
-export default connect(mapStateToProps, { logout, login, authModalToggle })(Header);
+export default connect(mapStateToProps, { login, authModalToggle })(Header);

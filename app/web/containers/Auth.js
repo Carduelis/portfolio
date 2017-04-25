@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from '../common/Button';
 
-import { login } from '../../actions/firebase';
+import { login, logout } from '../../actions/firebase';
 
 class Header extends Component {
   constructor(props) {
@@ -10,8 +10,7 @@ class Header extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.state = {
       login: '',
-      password: '',
-      loading: false
+      password: ''
     };
   }
   componentWillMount() {
@@ -30,45 +29,55 @@ class Header extends Component {
     this.props.login(this.state.login, this.state.password);
   }
   render() {
+    const { isFetching, isAuthenticated, user } = this.props.auth;
+    if (isAuthenticated) {
+      return (
+        <div>
+            {user.email}
+            <Button label="Logout" handleClick={this.props.logout} />
+        </div>
+      );
+    }
     return (
-      <form onSubmit={e => this.login(e)} className={this.state.loading && "loading"}>
-        <div className="input-row">
-          <label htmlFor="login">Email</label>
-          <input
-            onChange={this.onInputChange}
-            autoFocus={true}
-            className="input"
-            name="login"
-            type="text"
-            value={this.state.login}
-          />
-        </div>
-        <div className="input-row">
-          <label htmlFor="password">Password</label>
-          <input
-            onChange={this.onInputChange}
-            className="input"
-            name="password"
-            type="password"
-            value={this.state.password}
-          />
-        </div>
-        <div className="input-row" style={{ width: 500 }}>
-          <Button
-            loading={this.state.loading}
-            fill
-            submit
-            label="Login"
-          />
-        </div>
-      </form>
-    );
+    <form onSubmit={e => this.login(e)} className={isFetching && 'loading'}>
+      <div className="input-row">
+        <label htmlFor="login">Email</label>
+        <input
+          autoFocus
+          onChange={this.onInputChange}
+          className="input"
+          name="login"
+          type="text"
+          value={this.state.login}
+        />
+      </div>
+      {this.props.auth.error.message}
+      <div className="input-row">
+        <label htmlFor="password">Password</label>
+        <input
+          onChange={this.onInputChange}
+          className="input"
+          name="password"
+          type="password"
+          value={this.state.password}
+        />
+      </div>
+      <div className="input-row" style={{ width: 500 }}>
+        <Button
+          loading={isFetching}
+          fill
+          submit
+          label="Login"
+        />
+      </div>
+    </form>
+  );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    state: state.kek
+    auth: state.auth,
   };
 }
-export default connect(mapStateToProps, { login })(Header);
+export default connect(mapStateToProps, { login, logout })(Header);

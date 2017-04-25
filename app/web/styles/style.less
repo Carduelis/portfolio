@@ -76,6 +76,21 @@ p {
   //   padding: 50%;
   // }
 }
+@keyframes spinner {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+.spinner {
+
+  animation-name: spinner;
+  animation-timing-function: linear;
+  animation-duration: .3s;
+  animation-iteration-count: infinite;
+}
 .fade-enter {
   background: red;
   opacity: 0;
@@ -195,7 +210,6 @@ p {
       display: block;
       content: '';
       animation-name: leftToRight;
-      animation-timing-function: ease-in-out;
       animation-timing-function: linear;
       animation-duration: .3s;
       animation-iteration-count: infinite;
@@ -272,5 +286,6 @@ p {
 
 @import "kek.less";
 @import "modal.less";
+@import "nav.less";
 @import "card.less";
 @import "headerBar.less";

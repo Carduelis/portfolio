@@ -3,12 +3,15 @@ import {
   FETCH_PROJECTS,
   FIREBASE_CONFIG,
   USER_EXISTS,
-  USER_EXISTS_ERROR,
+  USER_ABSENTS,
+  USER_EXISTS_LOADING,
   AUTH_MODAL,
   AUTH_LOGIN,
   AUTH_LOGIN_ERROR,
+  AUTH_LOGIN_LOADING,
   AUTH_LOGOUT,
-  AUTH_LOGOUT_ERROR
+  AUTH_LOGOUT_ERROR,
+  AUTH_LOGOUT_LOADING
  } from '../constants';
 
 firebase.initializeApp(FIREBASE_CONFIG);
@@ -25,7 +28,7 @@ export function logout() {
     }).catch(error => {
       dispatch({
           type: AUTH_LOGOUT_ERROR,
-          payload: error
+          error
       });
     });
   };
@@ -33,17 +36,15 @@ export function logout() {
 
 export function checkUserAuthenication() {
   return dispatch => {
+      dispatch({ type: USER_EXISTS_LOADING });
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             dispatch({
               type: USER_EXISTS,
-              payload: { login: true, ...user.toJSON() }
+              user: user.toJSON(),
             });
         } else {
-          dispatch({
-            type: USER_EXISTS_ERROR,
-            payload: { login: false },
-          });
+          dispatch({ type: USER_ABSENTS });
         }
     });
   };
@@ -79,21 +80,22 @@ export function addProject() {
 export function login(email, password) {
   console.log(email);
   return dispatch => {
+    dispatch({ type: AUTH_LOGIN_LOADING });
     const authPromise = firebase.auth().signInWithEmailAndPassword(email, password);
     authPromise.then(snapshot => {
       const { uid, displayName, photoURL, email, emailVerified, providerData } = snapshot;
-      const payload = { login: true, uid, displayName, photoURL, email, emailVerified, providerData };
+      const payload = { uid, displayName, photoURL, email, emailVerified, providerData };
       console.debug(payload);
       dispatch({
           type: AUTH_LOGIN,
-          payload
+          receivedAt: Date.now(),
+          user: payload
       });
     }).catch(error => {
-      const payload = { login: false, ...error };
-      console.debug(payload);
       dispatch({
           type: AUTH_LOGIN_ERROR,
-          payload
+          receivedAt: Date.now(),
+          error
       });
     });
   };

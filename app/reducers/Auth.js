@@ -1,35 +1,75 @@
 import {
   AUTH_MODAL,
   USER_EXISTS,
-  USER_EXISTS_ERROR,
+  USER_ABSENTS,
   AUTH_LOGIN,
   AUTH_LOGIN_ERROR,
+  AUTH_LOGIN_LOADING,
   AUTH_LOGOUT,
-  AUTH_LOGOUT_ERROR } from '../constants';
+  AUTH_LOGOUT_ERROR,
+  AUTH_LOGOUT_LOADING
+} from '../constants';
 
-export default function (state = { login: false }, action) {
-  switch (action.type) {
+const initialState = {
+  isAuthenticated: false,
+  isFetching: false,
+  error: false,
+};
+
+export default function (state = initialState, action) {
+  const { type, payload, user, error } = action;
+  switch (type) {
     case AUTH_MODAL:
-      return Object.assign({}, state, action.payload);
-
+      return Object.assign({}, state, payload);
     case USER_EXISTS:
-    case USER_EXISTS_ERROR:
-      return Object.assign({}, state, action.payload);
+      return Object.assign({}, state, {
+        isAuthenticated: true,
+        isFetching: false,
+        error: false,
+        user
+      });
+    case USER_ABSENTS:
+      return Object.assign({}, state, {
+        isAuthenticated: false,
+        isFetching: false,
+        error: false,
+      });
 
     case AUTH_LOGIN:
+      return Object.assign({}, state, {
+        isAuthenticated: true,
+        isFetching: false,
+        error: false,
+        user
+      });
     case AUTH_LOGIN_ERROR:
-      // we cant change state via push
-      // we creates a new copy of state by concat
-      return Object.assign({}, state, action.payload);
-      // or via new es6-syntax
-      // return [action.payload.data, ...state];
+      return Object.assign({}, state, {
+        isAuthenticated: false,
+        isFetching: false,
+        error,
+      });
+    case AUTH_LOGIN_LOADING:
+      return Object.assign({}, state, {
+        isAuthenticated: false,
+        isFetching: true,
+        error: false,
+      });
     case AUTH_LOGOUT:
+      return Object.assign({}, state, {
+        isAuthenticated: false,
+        isFetching: false,
+        error: false
+      });
+
     case AUTH_LOGOUT_ERROR:
+      return Object.assign({}, state, payload);
+
+    case AUTH_LOGOUT_LOADING:
         // we cant change state via push
         // we creates a new copy of state by concat
-        return Object.assign({}, state, action.payload);
+        return Object.assign({}, state, payload);
         // or via new es6-syntax
-        // return [action.payload.data, ...state];
+        // return [payload.data, ...state];
     default:
       return state;
   }
