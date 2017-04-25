@@ -36,7 +36,32 @@ p {
 @basic-dark: rgb(15,30,50);
 @accent: rgb(230,76,209);
 @accent-light: rgba(30,76,109,.6);
+@accent-background: @accent-light;
 @accent-background-light: lighten(@accent-light,65%);
+
+@base: rgb(39, 81, 138);
+@accent: spin(@base,-20%);
+@base-light: lighten(@base,20%)
+@base-dark: darken(@base, 10%);
+
+
+@background-accent: @accent;
+@background-base: lighten(@base,60%);
+@text-base: desaturate(@base,10%);
+@text-inverse: lighten(@base,55%);
+
+.accent-coloring() {
+  background-color: @background-accent;
+  color: @text-inverse;
+}
+
+.base-coloring() {
+  background-color: @background-base;
+  color: @text-base;
+}
+
+
+
 // let the real CSS begin
 .react-native-web {
   background: #fff;

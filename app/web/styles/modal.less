@@ -2,6 +2,21 @@
     .position(fixed);
     z-index: 99999;
     padding: @pad;
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: @pad;
+      background: @background-accent;
+      color: @basic-light;
+    }
+    &-body {
+      padding: @pad;
+    }
+    &-footer {
+      padding: @pad;
+      background: @accent-background-light;
+    }
 }
 .modal-backdrop {
   .position();
@@ -15,7 +30,6 @@
   background: #fff;
   position: relative;
   z-index: 2;
-  padding: @pad;
   margin: auto;
   width: 400px;
   max-width: 100%;
