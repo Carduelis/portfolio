@@ -24,32 +24,42 @@ export default class Modal extends Component {
     }
     body.classList.add('modal-opened');
 
-    const transition = {
+    const transitionFade = {
       transitionName: 'fade',
       transitionEnterTimeout: 500,
       transitionLeaveTimeout: 300,
       transitionAppear: true,
-      transitionAppearTimeout: 300
+      transitionAppearTimeout: 500
+    };
+
+    const transitionBump = {
+      transitionName: 'bump',
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 300,
+      transitionAppear: true,
+      transitionAppearTimeout: 500
     };
     const { title, children } = this.props;
     return (
         <div className="modal">
-          <ReactCSSTransitionGroup {...transition}>
-            <div className="modal-window">
-              <header className="modal-header">
-                <h3 className="modal-title">{title}</h3>
-                
-                <span className="modal-close">
-                  <Button icon={<MdClose />} handleClick={this.close} />
-                </span>
-              </header>
-              <section className="modal-body">
-                {children || 'Content is not presented'}
-              </section>
-              <footer className="modal-footer">
-                kek
-              </footer>
-            </div>
+            <ReactCSSTransitionGroup {...transitionBump}>
+              <div className="modal-window">
+                <header className="modal-header">
+                  <span className="modal-title">{title}</span>
+
+                  <span className="modal-close">
+                    <Button icon={<MdClose />} handleClick={this.close} />
+                  </span>
+                </header>
+                <section className="modal-body">
+                  {children || 'Content is not presented'}
+                </section>
+                <footer className="modal-footer">
+                  kek
+                </footer>
+              </div>
+            </ReactCSSTransitionGroup>
+            <ReactCSSTransitionGroup {...transitionFade}>
             <div className="modal-backdrop" onClick={this.close} />
           </ReactCSSTransitionGroup>
         </div>

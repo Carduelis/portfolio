@@ -6,15 +6,21 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: @pad;
-      background: @background-accent;
-      color: @basic-light;
+      padding: @pad/4 @pad/4 @pad/4 @pad;
+      .accent-coloring();
+      .btn {
+        .accent-coloring();
+      }
     }
     &-body {
       padding: @pad;
+      min-height: 10em;
+      display: flex;
+      align-items: center;
     }
     &-footer {
-      padding: @pad;
+      padding: @pad/4 @pad;
+      font-size: .85em;
       background: @accent-background-light;
     }
 }

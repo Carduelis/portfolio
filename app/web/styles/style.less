@@ -40,19 +40,28 @@ p {
 @accent-background-light: lighten(@accent-light,65%);
 
 @base: rgb(39, 81, 138);
-@accent: spin(@base,-20%);
+@base: #1490E8;
+@accent: darken(spin(@base, 120%),12%);
+@accent: darken(desaturate(spin(@base, -120%),40%),4%);
+@accent: desaturate(spin(@base, 180%),15%);
 @base-light: lighten(@base,20%)
 @base-dark: darken(@base, 10%);
 
 
 @background-accent: @accent;
 @background-base: lighten(@base,60%);
+
 @text-base: desaturate(@base,10%);
 @text-inverse: lighten(@base,55%);
+@text-accent-inverse: lighten(@accent,60%);
+
+@danger: mix(@base, red, 20%);
+@success: mix(@base, green, 10%);
+@warning: mix(@base, orange, 10%);
 
 .accent-coloring() {
   background-color: @background-accent;
-  color: @text-inverse;
+  color: @text-accent-inverse;
 }
 
 .base-coloring() {
@@ -107,6 +116,52 @@ p {
 .fade-appear-active {
   opacity: 1;
   background: transparent;
+  transition: all 500ms ease-in;
+}
+
+.bump-enter {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.bump-enter-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: all 500ms ease-in;
+}
+.bump-appear {
+  animation-duration: 500ms;
+  animation-name: bounceInDown;
+}
+
+
+@keyframes bounceInDown {
+  0%,
+  60%,
+  75%,
+  90%,
+  100% {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 10px, 0);
+  }
+  75% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, 2px, 0);
+  }
+  100% {
+    transform: none;
+  }
+}
+.bump-appear-active {
+  transform: translateY(0%);
   transition: all 500ms ease-in;
 }
 .input {

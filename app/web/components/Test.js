@@ -53,16 +53,18 @@ export default class Test extends Component {
             label="Kesdfsk"
             handleClick={(e) => console.log(e.currentTarget.type)}
           />
-          <button className="btn" type="submit">Кексимус максимус</button>
-          <button className="btn btn-danger">Удалить</button>
-          <button className="btn btn-success"><MdAdd />Создать</button>
-          <button className="btn btn-warning">Уверены?</button>
-          <button className="btn btn-lg"><MdAdd />Big Passion Button</button>
-          <button className="btn btn-sm"><MdAdd />Little But</button>
-          <button className="btn btn-fill">Basic filled</button>
-          <button className="btn btn-accent">Важная кнопка</button>
-          <button className="btn btn-fill btn-success">Создать</button>
-          <button className="btn" type="submit">Кексимус максимус</button>
+          <Button fill type="success" size="sm" label="Успех" />
+          <Button fill type="warning" size="sm" label="Предупреждение" />
+          <Button fill type="primary" size="sm" label="Primary" />
+          <Button fill type="danger" size="sm" label="Danger!" />
+          <Button type="success" size="lg" label="Успех" />
+          <Button type="warning" size="lg" label="Предупреждение" />
+          <Button type="primary" size="lg" label="Primary" />
+          <Button type="danger" size="lg" label="Danger!" />
+          <Button bordered type="success" size="lg" label="Успех" />
+          <Button bordered type="warning" size="lg" label="Предупреждение" />
+          <Button bordered type="primary" size="lg" label="Primary" />
+          <Button bordered type="danger" size="lg" label="Danger!" />
       </form>
     );
   }

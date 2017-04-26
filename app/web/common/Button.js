@@ -18,6 +18,9 @@ export default class Button extends Component {
     if (props.filled || props.fill) {
       className.push('fill');
     }
+    if (props.bordered) {
+      className.push('bordered');
+    }
     if (props.loading === true) {
       className.push('loading');
       attrs.disabled = true;
@@ -31,7 +34,7 @@ export default class Button extends Component {
     return (
       <button
         className={className.getClass()}
-        onClick={e => props.handleClick(e)}
+        onClick={props.handleClick}
         type={htmlType}
         {...attrs}
       >
