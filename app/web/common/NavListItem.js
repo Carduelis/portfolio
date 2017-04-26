@@ -13,7 +13,7 @@ export default class NavList extends Component {
     }
     return (
       <div className={className.getClass()} >
-        <Ink />
+        {!isActive && <Ink />}
         <span className="label">{item.title}, id: {item.id}</span>
         {!isActive && <MdKeyboardArrowRight />}
       </div>

@@ -20,7 +20,6 @@ export default class HeaderBar extends Component {
     const { props } = this;
     props.left.icon = props.left.icon ? <props.left.icon size={32} /> : <MdMenu size={32} />;
     props.right.icon = props.right.icon ? <props.right.icon size={32} /> : <MdSearch size={32} />;
-
     return (
       <div className="header-bar-substrate">
         <div className="header-bar fixed">

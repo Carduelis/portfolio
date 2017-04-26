@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+// import Sidebar from 'react-sidebar';
+import Sidebar from '../common/Sidebar';
+// import SidebarContent from '../containers/Sidebar';
 // dumb components
 import Header from '../containers/Header';
 import AuthModal from '../containers/AuthModal';
@@ -18,20 +21,48 @@ import {
   toggleColor
 } from '../../actions/actions';
 // actions
+import {
+  toggleSidebar
+} from '../../actions/interface';
+// actions
 
 /** The app entry point */
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      sidebarOpen: false
+    };
+
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+  }
+  onSetSidebarOpen(sidebarVisibility) {
+    // this.setState({ sidebarOpen: sidebarVisibility });
+    this.props.toggleSidebar();
+  }
   render() {
     // injected by connect call
     const { dispatch, color, data } = this.props;
+    const { interfaceState } = this.props;
 
+    const sidebar = (<NavListContainer />);
     return (
       <div className="react-native-web">
         <Header />
+        <Sidebar
+          rootClassName="root"
+          sidebarClassName="sidebar"
+          overlayClassName="sidebar-backdrop"
+          sidebar={sidebar}
+          // open={this.state.sidebarOpen}
+          open={interfaceState.sidebarVisibility}
+          onSetOpen={this.onSetSidebarOpen}
+        />
         <Test />
-        <NavListContainer />
+
         <Card title="Проект" description="Мой первый проект">
-          <Auth />
+        <Auth />
         </Card>
         <ProjectsList />
         <HelloWorld
@@ -54,4 +85,4 @@ App.propTypes = {
 const select = state => state;
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(App);
+export default connect(select, { toggleSidebar })(App);

@@ -1,10 +1,9 @@
-import clone        from 'clone';
-import assign       from 'object-assign';
 import { combineReducers } from 'redux';
 
 import ToggleColorReducer from './ToggleColor';
 import ProjectsReducer from './Projects';
-import Navigation from './Navigation_reducer';
+import NavigationReducer from './Navigation_reducer';
+import InterfaceReducer from './Interface_reducer';
 import Auth from './Auth';
 
 // import {
@@ -18,7 +17,8 @@ const rootReducer = combineReducers({
   color: ToggleColorReducer,
   projects: ProjectsReducer,
   auth: Auth,
-  navigation: Navigation
+  interfaceState: InterfaceReducer,
+  navigation: NavigationReducer
 });
 
 // const initialState = {
