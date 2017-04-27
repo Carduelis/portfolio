@@ -12,12 +12,12 @@ export default class NavList extends Component {
       switch (item.type) {
         case 'item':
           return (
-            <NavListItem item={item} key={item.id} />
+            <NavListItem {...this.props} item={item} key={item.id} />
           );
         case 'group':
           return (
             <NavListGroup item={item} key={item.id}>
-              <NavList idsForShow={item.items} allItems={allItems} />
+              <NavList {...this.props} idsForShow={item.items} allItems={allItems} />
             </NavListGroup>
           );
         default:

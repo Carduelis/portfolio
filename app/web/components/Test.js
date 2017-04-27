@@ -53,6 +53,7 @@ export default class Test extends Component {
             label="Kesdfsk"
             handleClick={(e) => console.log(e.currentTarget.type)}
           />
+          <Link to="news">Проекты</Link>
           <Button fill type="success" size="sm" label="Успех" />
           <Button fill type="warning" size="sm" label="Предупреждение" />
           <Button fill type="primary" size="sm" label="Primary" />

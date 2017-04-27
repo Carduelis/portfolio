@@ -69,6 +69,42 @@ p {
   color: @text-base;
 }
 
+.main-content {
+  transition: inherit;
+}
+.main-content-wrapper  {
+  background-color: #f8fcfc;
+  transform-origin: 50% 300px;
+  transition: all 100ms ease-in;
+  // &::after {
+  //   content: '';
+  //   .position(fixed, auto);
+  //   background: inherit;
+  //   box-shadow: 0 0 @pad/2 rgba(0,0,0,.2);
+  //   height: @pad*2;
+  //   display: block;
+  //   transition: inherit;
+  //   transform: translateY(@pad*2);
+  // }
+}
+
+body {
+  transition: all 300ms;
+  &.modal-opened {
+    overflow: hidden;
+    .main-content-wrapper {
+      overflow: hidden;
+      transition-duration: 500ms;
+      &::after {
+        transform: translateY(0);
+      }
+    }
+    .main-content {
+      transform: scale(0.96);
+      filter: grayscale(100%);
+    }
+  }
+}
 
 
 // let the real CSS begin
@@ -101,20 +137,22 @@ p {
   animation-iteration-count: infinite;
 }
 .fade-enter {
-  background: red;
+  filter: grayscale(100%);
   opacity: 0;
 }
 .fade-enter-active {
   opacity: 1;
+  filter: grayscale(0);
   background: transparent;
   transition: all 500ms ease-in;
 }
 .fade-appear {
-  background: red;
+  filter: grayscale(100%);
   opacity: 0;
 }
 .fade-appear-active {
   opacity: 1;
+  filter: grayscale(0);
   background: transparent;
   transition: all 500ms ease-in;
 }
@@ -344,4 +382,5 @@ p {
 @import "nav.less";
 @import "sidebar.less";
 @import "card.less";
+@import "button-group.less";
 @import "headerBar.less";

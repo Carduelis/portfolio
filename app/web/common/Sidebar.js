@@ -343,7 +343,7 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
   // main content to render
-  children: PropTypes.node.isRequired,
+  // children: PropTypes.node.isRequired,
 
   // styles
   styles: PropTypes.shape({

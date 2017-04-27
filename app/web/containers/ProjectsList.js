@@ -15,9 +15,9 @@ class ProjectsList extends Component {
 
   renderProjects() {
     const projectsData = this.props.projects;
-    return projectsData.map(project => (
+    return projectsData.map((project, i) => (
           <Card
-            key={project.title}
+            key={i + project.title}
             title={project.title}
             description={project.description}
           />
@@ -26,10 +26,8 @@ class ProjectsList extends Component {
   }
   render() {
     return (
-      <div>
-        <div>
-          {this.renderProjects()}
-        </div>
+      <div key="kek">
+        {this.renderProjects()}
         <Button handleClick={this.onAddProject} />
       </div>
     );

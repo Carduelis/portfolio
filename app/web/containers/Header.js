@@ -37,7 +37,7 @@ class Header extends Component {
       right: {
         icon: isFetching ? SpinIt(MdLoop) : MdAuth,
         handleClick: this.signIn,
-        label: isAuthenticated ? user.email : null
+        // label: isAuthenticated ? user.email : null
       }
     };
 
