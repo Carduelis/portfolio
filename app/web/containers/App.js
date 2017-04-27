@@ -3,18 +3,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import Sidebar from 'react-sidebar';
 import Sidebar from '../common/Sidebar';
+import Card from '../common/Card';
 // import SidebarContent from '../containers/Sidebar';
 // dumb components
-import Header from '../containers/Header';
-import AuthModal from '../containers/AuthModal';
 import Test from '../components/Test';
-import Card from '../common/Card';
-import Auth from '../containers/Auth';
 import HelloWorld from '../components/HelloWorld';
 
+import Header from '../containers/Header';
+import AuthModal from '../containers/AuthModal';
+import Auth from '../containers/Auth';
 import NavListContainer from '../containers/NavListContainer';
-
+import MainWrapper from '../containers/MainWrapper';
 import ProjectsList from '../containers/ProjectsList';
+
 import DevTools from './DevTools';
 // actions
 import {
@@ -59,16 +60,18 @@ class App extends Component {
           open={interfaceState.sidebarVisibility}
           onSetOpen={this.onSetSidebarOpen}
         />
-        <Test />
+        <MainWrapper>
+          <Test />
 
-        <Card title="Проект" description="Мой первый проект">
-        <Auth />
-        </Card>
-        <ProjectsList />
-        <HelloWorld
-          onClick={() => dispatch(toggleColor())}
-          color={color}
-        />
+          <Card title="Проект" description="Мой первый проект">
+          <Auth />
+          </Card>
+          <ProjectsList />
+          <HelloWorld
+            onClick={() => dispatch(toggleColor())}
+            color={color}
+          />
+        </MainWrapper>
         <AuthModal />
         {!window.__REDUX_DEVTOOLS_EXTENSION__ && <DevTools />}
       </div>
