@@ -1,4 +1,4 @@
-export const FETCH_PROJECTS = 'FETCH_PROJECTS';
+
 export const FIREBASE_CONFIG = {
   apiKey: 'AIzaSyAl_6XgSVTgtFZZgifFG5h0f32zBjoIDqI',
   authDomain: 'portfolio-8cacc.firebaseapp.com',
@@ -7,6 +7,8 @@ export const FIREBASE_CONFIG = {
   storageBucket: 'portfolio-8cacc.appspot.com',
   messagingSenderId: '425730587751'
 };
+
+// AUTH
 export const AUTH_MODAL = 'AUTH_MODAL';
 export const USER_EXISTS = 'USER_EXISTS';
 export const USER_ABSENTS = 'USER_ABSENTS';
@@ -19,3 +21,13 @@ export const AUTH_LOGOUT_ERROR = 'AUTH_LOGOUT_ERROR';
 export const AUTH_LOGOUT_LOADING = 'AUTH_LOGOUT_LOADING';
 
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+
+// DATA
+export const GET_FILE_URL = 'GET_FILE_URL';
+export const GET_FILE_URL_ERROR = 'GET_FILE_URL_ERROR';
+
+// PROJECTS
+export const FETCH_PROJECTS = 'FETCH_PROJECTS';
+export const FETCH_PROJECT = 'FETCH_PROJECT';
+export const PROJECT_ADDED = 'PROJECT_ADDED';
+export const PROJECT_ADD_ERROR = 'PROJECT_ADD_ERROR';

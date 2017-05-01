@@ -2,9 +2,22 @@
     .position(fixed);
     z-index: 99999;
     padding: @pad;
+    max-height: 100%;
+    &-window {
+      background: #fff;
+      position: relative;
+      max-height: 100%;
+      z-index: 2;
+      margin: auto;
+      width: 400px;
+      max-width: 100%;
+      display: flex;
+      flex-flow: column;
+    }
     &-header {
       display: flex;
       align-items: center;
+      min-height: @pad*3;
       justify-content: space-between;
       padding: @pad/4 @pad/4 @pad/4 @pad;
       .accent-coloring();
@@ -17,6 +30,11 @@
       min-height: 10em;
       display: flex;
       align-items: center;
+      overflow-y: auto;
+      flex-flow: column;
+      align-items: left;
+      overflow-scrolling: touch;
+      -webkit-overflow-scrolling: touch;
     }
     &-footer {
       padding: @pad/4 @pad;
@@ -28,14 +46,4 @@
   .position();
   z-index: 1;
   background: rgba(0,0,0,.4);
-}
-.modal-window {
-  background: #fff;
-  position: relative;
-  z-index: 2;
-  margin: auto;
-  width: 400px;
-  max-width: 100%;
-  &.modal-sm {
-  }
 }

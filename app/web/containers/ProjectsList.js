@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import MdLocalOffer from 'react-icons/lib/md/local-offer';
+
 import Button from '../common/Button';
+import Modal from '../common/Modal';
 import Card from '../common/Card';
+import ProjectAdd from '../containers/ProjectAdd';
+import Tags from '../common/Tags';
+import Grid from '../common/Grid';
 import { fetchProjects, addProject } from '../../actions/firebase';
 // import Card from '../components/Card';
 
 class ProjectsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeProject: false
+    };
+  }
   componentWillMount() {
     this.props.fetchProjects();
   }
@@ -24,11 +36,82 @@ class ProjectsList extends Component {
       )
     );
   }
+  transformCard(id) {
+    this.setState({
+      activeProject: id
+    });
+  }
   render() {
+    // const tags = [
+    //   {
+    //     key: 1,
+    //     label: 2015,
+    //   }, {
+    //     key: 2,
+    //     label: 'Design',
+    //   }, {
+    //     key: 3,
+    //     label: 'Front-end',
+    //   }
+    // ];
+    const projects = this.props.projects;
+
+    const mapData = projects;
+    const { activeProject } = this.state;
+    // Object.keys(projects).map(key => {
+    //   const item = projects[key];
+    //   if (key === activeProject) {
+    //     return Object.assign({}, item, {
+    //         size: 'lg'
+    //     });
+    //   }
+    //   return item;
+    // });
+    const mapFunction = (project, id) => {
+      let tags = false;
+      if (typeof project.tags === 'string') {
+        tags = project.tags.split(', ').map((label, key) => ({ key, label }));
+      }
+      const to = `/projects/${id}`;
+      return (
+        <div
+          className="pointer"
+          key={to}
+          onClick={() => this.transformCard(id)}
+        >
+          <Card
+            title={project.title}
+            _to={to}
+            thumbnail={project.thumbnail}
+            cover={project.cover}
+            description={project.description}
+          >
+          {tags && <Tags tags={tags} />}
+          </Card>
+        </div>
+      );
+    };
+    const gridProps = {
+      classNames: ['kek'],
+      mapFunction,
+      mapData,
+    };
+    const project = projects[activeProject] || {};
     return (
-      <div key="kek">
-        {this.renderProjects()}
-        <Button handleClick={this.onAddProject} />
+      <div>
+        <Modal
+          title={project.title}
+          isOpen={activeProject}
+          onClose={() => this.setState({ activeProject: false })}
+        >
+          {activeProject && <Card
+            title={project.title}
+            cover={project.cover}
+            description={project.description}
+          />}
+        </Modal>
+        <Grid {...gridProps} />
+        <ProjectAdd />
       </div>
     );
   }

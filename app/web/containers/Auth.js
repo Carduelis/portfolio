@@ -62,7 +62,7 @@ class Header extends Component {
           value={this.state.password}
         />
       </div>
-      <div className="input-row" style={{ width: 500 }}>
+      <div className="input-row">
         <Button
           loading={isFetching}
           fill

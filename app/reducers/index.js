@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import ToggleColorReducer from './ToggleColor';
 import ProjectsReducer from './Projects';
 import NavigationReducer from './Navigation_reducer';
+import ProjectReducer from './Project_reducer';
 import InterfaceReducer from './Interface_reducer';
 import Auth from './Auth';
 
@@ -16,6 +17,7 @@ import Auth from './Auth';
 const rootReducer = combineReducers({
   color: ToggleColorReducer,
   projects: ProjectsReducer,
+  project: ProjectReducer,
   auth: Auth,
   interfaceState: InterfaceReducer,
   navigation: NavigationReducer
