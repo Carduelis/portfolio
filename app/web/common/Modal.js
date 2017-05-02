@@ -39,13 +39,16 @@ export default class Modal extends Component {
       transitionAppear: true,
       transitionAppearTimeout: 500
     };
-    const { title, children } = this.props;
+    const { title, subtitle, children } = this.props;
     return (
         <div className="modal">
             <ReactCSSTransitionGroup {...transitionBump}>
               <div className="modal-window">
                 <header className="modal-header">
-                  <span className="modal-title">{title}</span>
+                  <span className="modal-title">
+                    {title}
+                  {subtitle && <span className="modal-subtitle">{subtitle}</span>}
+                  </span>
 
                   <span className="modal-close">
                     <Button icon={<MdClose />} handleClick={this.close} />

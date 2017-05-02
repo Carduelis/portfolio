@@ -127,7 +127,8 @@ export function addProject(postData) {
     const projectsRef = rootRef.child('projects');
     const newPostKey = projectsRef.push().key;
     const updates = {}
-    updates['/projects/' + newPostKey] = postData;
+    updates['/projects/' + newPostKey] = postData.summary;
+    updates['/projects_full/' + newPostKey] = postData.full;
     firebase.database().ref().update(updates)
     .then(data => {
       dispatch({

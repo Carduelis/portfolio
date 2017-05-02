@@ -4,7 +4,6 @@ import MdLocalOffer from 'react-icons/lib/md/local-offer';
 
 export default class Tag extends Component {
   render() {
-    console.log(this.props);
     let icon = <MdLocalOffer {...this.props.iconProps} />;
     if (typeof this.props.icon !== 'undefined') {
       icon = this.props.icon;

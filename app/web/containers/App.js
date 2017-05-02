@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Sidebar from '../common/Sidebar';
 import Card from '../common/Card';
+import Main from '../components/Main';
 import Test from '../components/Test';
 import ProjectPage from '../containers/ProjectPage';
 import HelloWorld from '../components/HelloWorld';
@@ -55,8 +56,9 @@ class App extends Component {
             onSetOpen={this.onSetSidebarOpen}
           />
           <MainWrapper>
-            <Route exact path='/' component={ProjectsList} />
+            <Route exact path='/' component={Main} />
             <Route path='/news' component={Test} />
+            <Route path='/projects' component={ProjectsList} />
             <Route path='/contacts' component={Auth} />
             <Route path='/projects/:id' component={ProjectPage} />
           </MainWrapper>

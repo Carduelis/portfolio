@@ -73,6 +73,7 @@ class ProjectsList extends Component {
         tags = project.tags.split(', ').map((label, key) => ({ key, label }));
       }
       const to = `/projects/${id}`;
+      const cover = project.cover || 'assets/project_images/'+project.image;
       return (
         <div
           className="pointer"
@@ -83,7 +84,7 @@ class ProjectsList extends Component {
             title={project.title}
             _to={to}
             thumbnail={project.thumbnail}
-            cover={project.cover}
+            cover={cover}
             description={project.description}
           >
           {tags && <Tags tags={tags} />}
@@ -101,6 +102,7 @@ class ProjectsList extends Component {
       <div>
         <Modal
           title={project.title}
+          subtitle={project.description}
           isOpen={activeProject}
           onClose={() => this.setState({ activeProject: false })}
         >
