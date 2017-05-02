@@ -1,0 +1,29 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.grid-item {
+  flex-basis: 20%;
+  @media (max-width: 1600px) {
+    flex-basis: 25%;
+  }
+  @media (max-width: 1400px) {
+    flex-basis: 33%;
+  }
+  @media (max-width: 1000px) {
+    flex-basis: 50%;
+  }
+  &-lg {
+    flex-basis: 40%;
+    @media (max-width: 1600px) {
+      flex-basis: 50%;
+    }
+    @media (max-width: 1400px) {
+      flex-basis: 60%;
+    }
+    @media (max-width: 1000px) {
+      flex-basis: 100%;
+    }
+  }
+}

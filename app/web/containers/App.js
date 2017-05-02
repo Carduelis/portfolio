@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, withRouter, NavLink } from 'react-router-dom';
+import { HashRouter as Router, Route, NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Sidebar from '../common/Sidebar';
 import Card from '../common/Card';
 import Test from '../components/Test';
+import ProjectPage from '../containers/ProjectPage';
 import HelloWorld from '../components/HelloWorld';
 import HeaderBarSubstrate from '../components/HeaderBarSubstrate';
 
@@ -63,6 +64,7 @@ class App extends Component {
             <Route exact path='/' component={Test} />
             <Route path='/news' component={ProjectsList} />
             <Route path='/contacts' component={Auth} />
+            <Route path='/projects/:id' component={ProjectPage} />
           </MainWrapper>
             <AuthModal />
             {!window.__REDUX_DEVTOOLS_EXTENSION__ && <DevTools />}

@@ -12,20 +12,33 @@ export default class Card extends Component {
       transitionAppear: true,
       transitionAppearTimeout: 300
     };
-    const { cover, title, description, children, linkTo } = this.props;
+    const { cover, title, description, children, to, thumbnail } = this.props;
     const cardContent = [];
-    if (cover) {
-      cardContent.push(
-        <div key="1" className="card-cover">
-          <img className="card-cover-img" src={cover} alt={title} title={title} />
-        </div>
-      );
+    if (thumbnail || cover) {
+      let img = false;
+      if (cover) {
+        img = <img className="card-cover-img" src={cover} alt={title} title={title} />;
+      } else {
+        img = <div className="card-cover-loader">Loading picture of &laquo;{title}&raquo;</div>;
+      }
+      if (to) {
+        cardContent.push(
+          <Link to={to} key="1" className="card-cover">{img}</Link>
+        );
+      } else {
+        cardContent.push(
+          <div key="1" className="card-cover">{img}</div>
+        );
+      }
     }
     if (title) {
-      const jsx = <h2 key="2" className="card-title">{title}</h2>
-      if (linkTo) {
-        // cardContent.push(<Link to="kk">{jsx}</Link>);
-        cardContent.push(jsx);
+      const jsx = <h2 key="2" className="card-title"><span>{title}</span></h2>;
+      if (to) {
+        cardContent.push(
+          <Link key="2" to={to} className="card-title-link">
+            {jsx}
+          </Link>
+        );
       } else {
         cardContent.push(jsx);
       }

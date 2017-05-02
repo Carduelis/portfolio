@@ -23,6 +23,7 @@ body, button, input {
 h1,h2,h3,h4,h5,h6 {
   margin: .5em 0 .2em;
   padding: .2em 0 .1em;
+  line-height: 1.2em;
 }
 p {
   margin: 0 0 .5em;
@@ -89,20 +90,21 @@ p {
 }
 
 body {
+  min-width: 320px;
   transition: all 300ms;
   &.modal-opened {
     overflow: hidden;
-    .main-content-wrapper {
-      overflow: hidden;
-      transition-duration: 500ms;
-      &::after {
-        transform: translateY(0);
-      }
-    }
-    .main-content {
-      transform: scale(0.96);
-      filter: grayscale(100%);
-    }
+    // .main-content-wrapper {
+    //   overflow: hidden;
+    //   transition-duration: 500ms;
+    //   &::after {
+    //     transform: translateY(0);
+    //   }
+    // }
+    // .main-content {
+    //   transform: scale(0.96);
+    //   filter: grayscale(100%);
+    // }
   }
 }
 
@@ -202,24 +204,6 @@ body {
   transform: translateY(0%);
   transition: all 500ms ease-in;
 }
-.input {
-  padding: @pad/2;
-  border: 1px solid @basic-light;
-  &:focus {
-    border-color: @accent-light;
-    background-color: @accent-background-light;
-  }
-}
-.input-row {
-  padding: @pad;
-  label {
-    font-size: .8em;
-    display: block;
-  }
-  input {
-
-  }
-}
 .tags-group {
   font-size: .85em;
   .tag {
@@ -313,7 +297,7 @@ body {
     }
   }
   span {
-    display: block;
+    display: inline-block;
     transition: 300ms all;
   }
   svg {
@@ -377,9 +361,15 @@ body {
   }
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 @import "kek.less";
+@import "grid.less";
 @import "modal.less";
 @import "nav.less";
+@import "input.less";
 @import "sidebar.less";
 @import "card.less";
 @import "button-group.less";

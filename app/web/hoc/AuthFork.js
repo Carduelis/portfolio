@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
 
 export default function (ComposedComponent, options = {}) {
   class AuthFork extends Component {
@@ -20,7 +21,7 @@ export default function (ComposedComponent, options = {}) {
   }
   function mapStateToProps(state) {
     return {
-      authenticated: state.auth.login
+      authenticated: state.auth.isAuthenticated
     };
   }
   return connect(mapStateToProps)(AuthFork);
