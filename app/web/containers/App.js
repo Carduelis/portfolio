@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Sidebar from '../common/Sidebar';
 import Card from '../common/Card';
@@ -44,6 +44,7 @@ class App extends Component {
       <Router>
         <div className="react-native-web">
           <Header />
+          <NavListContainer />
           <Sidebar
             rootClassName="root"
             sidebarClassName="sidebar"
@@ -54,6 +55,11 @@ class App extends Component {
             onSetOpen={this.onSetSidebarOpen}
           />
           <MainWrapper>
+            <div className="nav-list">
+              <NavLink to='/news'>news</NavLink>
+              <NavLink exact to='/'>Главная</NavLink>
+              <NavLink to='/contacts'>contacts</NavLink>
+            </div>
             <Route exact path='/' component={Test} />
             <Route path='/news' component={ProjectsList} />
             <Route path='/contacts' component={Auth} />

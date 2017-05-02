@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import CommonNavList from '../common/NavList';
+// import { connect } from 'react-redux';
+import { NavLink, withRouter } from 'react-router-dom';
 import NavListGroup from '../common/NavListGroup';
-import NavListItem from '../containers/NavListItem';
+import NavListItem from '../common/NavListItem';
+// import { closeSidebar } from '../../actions/interface';
 
-export default class NavList extends Component {
+class NavList extends Component {
   render() {
-    const { allItems, idsForShow } = this.props;
-    console.log(this, idsForShow, allItems);
+    const { allItems, idsForShow, location } = this.props;
     const items = idsForShow.map(id => allItems[id]);
     const childs = items.map(item => {
+      const isActive = location.pathname === item.to;
+      // const isActive = false;
       switch (item.type) {
         case 'item':
           return (
-            <NavListItem {...this.props} item={item} key={item.id} />
+            <NavLink to={item.to} exact={item.exact} key={item.id}>
+              <NavListItem item={item} isActive={isActive} handleClick={this.props.handleClick} />
+            </NavLink>
           );
         case 'group':
           return (
@@ -27,13 +32,13 @@ export default class NavList extends Component {
       }
     });
     return (
-      <CommonNavList>
+      <div className="nav-list">
         {childs}
-      </CommonNavList>
+      </div>
     );
   }
 }
-
+export default withRouter(NavList);
 
 //
 // import NavListItem from '../containers/NavListItem';

@@ -8,26 +8,27 @@ const initialState = {
       id: 1,
       type: 'item',
       title: 'Главная',
+      exact: true,
       to: '/',
     },
     2: {
       id: 2,
       type: 'item',
       title: 'Новости',
-      to: 'news'
+      to: '/news'
     },
     3: {
       id: 3,
       type: 'group',
       title: 'Проекты',
-      to: 'projects',
+      to: '/projects',
       items: [4]
     },
     4: {
       id: 4,
       type: 'item',
       title: 'Контакты',
-      to: 'contacts'
+      to: '/contacts'
     }
   }
 };

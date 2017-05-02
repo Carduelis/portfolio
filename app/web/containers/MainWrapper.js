@@ -7,6 +7,7 @@ class MainWrapper extends Component {
     return (
       <div className="main-content-wrapper">
         <div className="main-content">
+
           {this.props.children}
           </div>
       </div>

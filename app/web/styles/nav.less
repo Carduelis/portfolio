@@ -5,9 +5,6 @@
     text-decoration: none;
     color: inherit;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
-    &.active {
-      background-color: green;
-    }
   }
 }
 .nav-item {
@@ -32,10 +29,9 @@
     opacity: .6;
   }
   &-active {
-    font-weight: bold;
+    background-color: @accent-background-light;
   }
   &-group {
-    font-weight: bold;
     margin: @pad 0;
     border-bottom: none;
   }
