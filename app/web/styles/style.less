@@ -24,9 +24,16 @@ h1,h2,h3,h4,h5,h6 {
   margin: .5em 0 .2em;
   padding: .2em 0 .1em;
   line-height: 1.2em;
+  font-weight: 300;
 }
 p {
   margin: 0 0 .5em;
+  &.silent {
+    opacity: .8;
+  }
+  &.small {
+    font-size: .85em;
+  }
 }
 @pad: 1rem;
 @success: green;
@@ -90,7 +97,7 @@ p {
 }
 .content {
   padding: @pad;
-  margin: @pad 0;
+  margin-bottom: @pad;
 }
 body {
   min-width: 320px;
@@ -110,7 +117,140 @@ body {
     // }
   }
 }
+abbr {
+  cursor: help;
+  border-bottom: 1px dashed rgba(0,0,0,.2);
+}
+a.silent {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  &:hover {
+    border-bottom-color: inherit;
+  }
+}
+header.centered {
+  text-align: center;
+  color: desaturate(darken(@base,25%),15%);
+  margin: @pad/2 0;
+  padding: @pad/2 0;
+  h1 {
+    font-size: 3em;
+    font-weight: 300;
+  }
+  h2 {
+    font-size: 1.8em;
+    font-weight: 300;
+    color: desaturate(darken(@base,15%),15%);
+  }
+  h3 {
+    font-size: 1.4em;
+    font-weight: 300;
+    color: desaturate(darken(@base,15%),15%);
+  }
+}
+.icon-lg {
+  font-size: 2em;
+}
+.overflow-scrolling {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  // flex: 1;
+  //   display: flex;
+}
+.columns {
+  display: flex;
+  &-custom {
+    max-width: 1600px;
+    margin: auto;
+    > .column {
+      margin: 0 auto;
+      padding: @pad @pad*2;
+    }
+  }
+}
+.columns-custom-wrapper {
+  @media (max-width: 420px) {
+    background-color: desaturate(#e7eff3,50%);
+  }
+}
+.column {
+  padding: 0 @pad;
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: @pad*20;
+  max-width: @pad*30;
+  &.skew {
+    position: relative;
+    z-index: 2;
+    padding-bottom: @pad*2;
+      &::before {
+        z-index: -1;
+        content: '';
+        .position(absolute);
+        display: block;
+        background: @accent-background;
+          transform: skewX(-6deg);
 
+      }
+    // &:first-of-type::before {left: -10%;}
+    // &:last-of-type::before {right: -10%;}
+    &:nth-of-type(1)::before {background-color: #ceb4e0};
+    &:nth-of-type(1)::before {background-color: #e9f5ec};
+
+    &:nth-of-type(2)::before {background-color: #b4cee0};
+    &:nth-of-type(2)::before {background-color: #e7eff3};
+
+    &:nth-of-type(3)::before {background-color: #cee0b4};
+    &:nth-of-type(3)::before {background-color: #efebe6};
+  }
+}
+.accent {
+  color: darken(@base,15%);
+  background: @accent-background-light;
+  padding: 0 0.15em;
+  margin-left: -0.15em;
+  margin-right: -0.15em;
+  border-radius: 2px;
+}
+.separator {
+  position: relative;
+  display: flex;
+  margin-top: @pad*3;
+  margin-bottom: @pad*3;
+  align-items: center;
+  justify-content: center;
+  height: @pad*2;
+}
+.separator-line {
+  @size: @pad*2;
+  width: @size*2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: @size;
+  svg {
+    fill: rgba(0,0,0,.4);
+  }
+  &::before, &::after {
+    content: '';
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0,0,0,.2);
+  }
+  &::before {
+    right: 50%;
+    left: @size;
+    margin-right: @size;
+  }
+  &::after {
+    left: 50%;
+    right: @size;
+    margin-left: @size;
+  }
+}
 
 // let the real CSS begin
 .react-native-web {
