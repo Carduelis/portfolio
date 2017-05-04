@@ -4,7 +4,7 @@ import ClassName from '../helpers/ClassName';
 
 class Grid extends Component {
   renderItems() {
-    const { mapData, mapFunction } = this.props;
+    const { mapArray, mapFunction } = this.props;
     const mapWrapper = (item, i, array) => {
       const className = new ClassName('grid-item');
       if (item.size) {
@@ -14,9 +14,8 @@ class Grid extends Component {
         <div className={className.getClass()} key={item.id || i}>{mapFunction(item, i, array)}</div>
       );
   };
-    return Object.keys(mapData).map(key => {
-      const item = mapData[key];
-      return mapWrapper(item, key, mapData);
+    return mapArray.map((item, key) => {
+      return mapWrapper(item, key, mapArray);
     });
   }
   render() {
@@ -31,5 +30,4 @@ class Grid extends Component {
     );
   }
 }
-
 export default Grid;

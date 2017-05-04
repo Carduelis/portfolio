@@ -65,7 +65,7 @@ export function authModalToggle(state) {
 export function fetchProjects() {
   return dispatch => {
     console.warn('fetching started');
-    const ref = firebase.database().ref('projects');
+    const ref = firebase.database().ref('projects').orderByChild('tags').limitToFirst(16);
     ref.on('value', snapshot => {
       console.log('snapshot', snapshot.val());
       const data = snapshot.val();

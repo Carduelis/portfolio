@@ -92,10 +92,20 @@ class ProjectsList extends Component {
         </div>
       );
     };
+    function getSortedArray(obj, key) {
+      const charCode = smth => smth.toString().toLowerCase().charCodeAt();
+      const sortedKeys = Object.keys(obj).sort((a,b) => {
+        return charCode(obj[a][key]) - charCode(obj[b][key]);
+      });
+      return sortedKeys.map(item => {
+        return obj[item];
+      });
+    }
+    const mapArray = getSortedArray(mapData, 'title');
     const gridProps = {
       classNames: ['kek'],
       mapFunction,
-      mapData,
+      mapArray,
     };
     const project = projects[activeProject] || {};
     return (
