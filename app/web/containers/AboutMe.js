@@ -15,13 +15,15 @@ class AboutMe extends Component {
       months: Math.floor(months),
       days: Math.floor(days) - 3 // wtf
     };
+    // const grayScaleImg = 'https://pp.userapi.com/c836325/v836325135/37642/0288gCa4VI0.jpg';
+    const coloredImg = 'https://pp.userapi.com/c837130/v837130013/2d76b/j93H1raEAng.jpg';
     return (
       <div className="about-me">
         <header className="centered">
           <h1>Hey, I{"'"}m Pavel</h1>
           <h3>Front-end developer and UI&nbsp;designer</h3>
           <div className="avatar">
-            <img alt="me" src="https://pp.userapi.com/c836325/v836325135/37642/0288gCa4VI0.jpg" />
+            <img alt="me" src={coloredImg} />
           </div>
           <div className="text">
           <p className="full-name">Full name:&nbsp;

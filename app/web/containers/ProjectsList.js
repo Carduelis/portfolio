@@ -6,6 +6,7 @@ import Button from '../common/Button';
 import Modal from '../common/Modal';
 import Card from '../common/Card';
 import ProjectAdd from '../containers/ProjectAdd';
+import Project from '../containers/Project';
 import Tags from '../common/Tags';
 import Grid from '../common/Grid';
 import { fetchProjects, addProject } from '../../actions/firebase';
@@ -55,7 +56,7 @@ class ProjectsList extends Component {
     //   }
     // ];
     const projects = this.props.projects;
-
+		const projects_sortedKeys = this.props.projects_sortedKeys;
     const mapData = projects;
     const { activeProject } = this.state;
     // Object.keys(projects).map(key => {
@@ -67,13 +68,14 @@ class ProjectsList extends Component {
     //   }
     //   return item;
     // });
-    const mapFunction = (project, id) => {
+    const mapFunction = (project, iteratee) => {
+			const id = projects_sortedKeys[iteratee];
       let tags = false;
       if (typeof project.tags === 'string') {
         tags = project.tags.split(', ').map((label, key) => ({ key, label }));
       }
       const to = `/projects/${id}`;
-      const cover = project.cover || 'assets/project_images/'+project.image;
+      const cover = project.cover || `assets/project_images/${project.image}`;
       return (
         <div
           className="pointer"
@@ -92,22 +94,17 @@ class ProjectsList extends Component {
         </div>
       );
     };
-    function getSortedArray(obj, key) {
-      const charCode = smth => smth.toString().toLowerCase().charCodeAt();
-      const sortedKeys = Object.keys(obj).sort((a,b) => {
-        return charCode(obj[a][key]) - charCode(obj[b][key]);
-      });
-      return sortedKeys.map(item => {
-        return obj[item];
-      });
-    }
-    const mapArray = getSortedArray(mapData, 'title');
+
+    const mapArray = projects_sortedKeys.map(item => mapData[item]);
     const gridProps = {
       classNames: ['kek'],
       mapFunction,
       mapArray,
     };
     const project = projects[activeProject] || {};
+		if (activeProject) {
+			project.id = projects[activeProject].id;
+		}
     return (
       <div>
         <Modal
@@ -116,11 +113,8 @@ class ProjectsList extends Component {
           isOpen={activeProject}
           onClose={() => this.setState({ activeProject: false })}
         >
-          {activeProject && <Card
-            title={project.title}
-            cover={project.cover}
-            description={project.description}
-          />}
+          {activeProject && console.info(project)}
+					{activeProject && <Project {...project} id={activeProject} />}
         </Modal>
         <Grid {...gridProps} />
         <ProjectAdd />
@@ -131,7 +125,8 @@ class ProjectsList extends Component {
 
 function mapStateToProps(state) {
   return {
-    projects: state.projects
+    projects: state.projects,
+		projects_sortedKeys: state.projects_sortedKeys
   };
 }
 

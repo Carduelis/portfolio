@@ -17,6 +17,8 @@ import {
   AUTH_LOGOUT_ERROR
  } from '../constants';
 
+import sortedKeysBy from '../web/helpers/sortedKeysBy';
+
 firebase.initializeApp(FIREBASE_CONFIG);
 const storageRef = firebase.storage()
 
@@ -63,29 +65,29 @@ export function authModalToggle(state) {
 }
 
 export function fetchProjects() {
+  const comparatorKey = 'title';
   return dispatch => {
-    console.warn('fetching started');
-    const ref = firebase.database().ref('projects').orderByChild('tags').limitToFirst(16);
+    const ref = firebase.database().ref('projects').orderByChild(comparatorKey).limitToFirst(16);
     ref.on('value', snapshot => {
-      console.log('snapshot', snapshot.val());
-      const data = snapshot.val();
-      for (let i in data) {
-        const project = data[i];
-        const { thumbnail } = project;
-        if (project.thumbnail) {
-          storageRef
-            .ref('images/project_thumbnails/' + project.thumbnail)
-            .getDownloadURL()
-            .then(url => {
-              project.cover = url;
-              dispatch({
-                type: FETCH_PROJECTS,
-                payload: data
-              });
-            })
-            .catch(console.error);
-        }
-      }
+      const payload = snapshot.val();
+			const sortedKeys = sortedKeysBy(payload, comparatorKey);
+      // for (let i in payload) {
+      //   const project = payload[i];
+      //   const { thumbnail } = project;
+      //   if (project.thumbnail) {
+      //     storageRef
+      //       .ref('images/project_thumbnails/' + project.thumbnail)
+      //       .getDownloadURL()
+      //       .then(url => {
+      //         project.cover = url;
+      //         dispatch({
+      //           type: FETCH_PROJECTS,
+      //           payload
+      //         });
+      //       })
+      //       .catch(console.error);
+      //   }
+      // }
       // const payload = data.map(item => {
       //   if (item.thumbnail) {
       //     storageRef
@@ -102,15 +104,18 @@ export function fetchProjects() {
       // });
       dispatch({
         type: FETCH_PROJECTS,
-        payload: snapshot.val()
+        payload,
+        sortedKeys
       });
     });
   };
 }
 
-export function fetchProject(options) {
+export function fetchProject(id) {
     return dispatch => {
-      const ref = firebase.database().ref('projects/' + options.id);
+      const ref = firebase.database().ref('projects_full');
+			console.log(ref);
+			// ref.child(id);
       ref.on('value', snapshot => {
         console.log('snapshot', snapshot.val());
         dispatch({
