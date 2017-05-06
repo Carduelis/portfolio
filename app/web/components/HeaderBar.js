@@ -26,13 +26,13 @@ export default class extends Component {
       labels: ['Новости', 'Мероприятия'],
       active: 0
     };
-
+    //<ButtonGroup {...buttonGroupProps} />
     const { props } = this;
     props.left.icon = props.left.icon ? <props.left.icon size={32} /> : <MdMenu size={32} />;
     props.right.icon = props.right.icon ? <props.right.icon size={32} /> : <MdSearch size={32} />;
     const headerBarProps = {
       left: <Button {...buttonProps} {...props.left} />,
-      center: <ButtonGroup {...buttonGroupProps} />,
+      center: <span>Welcome to my site!</span>,
       right: <Button {...buttonProps} {...props.right} />,
     };
     return (

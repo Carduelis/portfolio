@@ -67,7 +67,7 @@ export function authModalToggle(state) {
 export function fetchProjects() {
   const comparatorKey = 'title';
   return dispatch => {
-    const ref = firebase.database().ref('projects').orderByChild(comparatorKey).limitToFirst(16);
+    const ref = firebase.database().ref('projects').orderByChild(comparatorKey).limitToFirst(40);
     ref.on('value', snapshot => {
       const payload = snapshot.val();
 			const sortedKeys = sortedKeysBy(payload, comparatorKey);

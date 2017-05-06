@@ -26,10 +26,23 @@ class AboutMe extends Component {
           <h1>Hey, I{"'"}m Pavel!</h1>
           <h3>Front-end developer and UI&nbsp;designer</h3>
           <div className="row">
-            <div className="col-sm-3">
-              kek
+            <div className="col-sm-1 mobile-hide" />
+            <div className="col-sm-3 mobile-hide">
+              <Heading title="Social Networks" />
+              <div className="nav-list">
+                <div className="nav-item nav-item-link">
+                  <a className="label" href="//github.com/Carduelis" target="_blank">Github</a>
+                </div>
+                <div className="nav-item nav-item-link">
+                  <a className="label" href="//vk.com/pavepy" target="_blank">Vk.com</a>
+
+                </div>
+                <div className="nav-item nav-item-link">
+                  <a className="label" href="//instagram.com/Carduelis_first" target="_blank">Instagram</a>
+                </div>
+              </div>
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-4 mobile-center">
               <div className="avatar">
                 <img alt="me" src={coloredImg} />
               </div>
@@ -42,7 +55,7 @@ class AboutMe extends Component {
                 </p>
               </div>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-3 mobile-hide">
               <Heading title="Curriculum Vitae" />
               <div className="btn-group">
                 <a className="btn btn-bordered" download href="/assets/files/en.pdf">
@@ -53,6 +66,7 @@ class AboutMe extends Component {
                 </a>
               </div>
             </div>
+            <div className="col-sm-1 mobile-hide" />
           </div>
         </header>
       </div>

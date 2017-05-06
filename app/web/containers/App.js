@@ -10,6 +10,7 @@ import HelloWorld from '../components/HelloWorld';
 import HeaderBarSubstrate from '../components/HeaderBarSubstrate';
 
 import Header from '../containers/Header';
+import Heading from '../components/Heading';
 import AuthModal from '../containers/AuthModal';
 import Auth from '../containers/Auth';
 import NavListContainer from '../containers/NavListContainer';
@@ -38,9 +39,32 @@ class App extends Component {
     const sidebar = (
       <div>
         <HeaderBarSubstrate />
-        <NavListContainer />
+        <Heading small title="Curriculum Vitae" />
+        <div className="btn-group">
+          <a className="btn btn-bordered" download href="/assets/files/en.pdf">
+            <span className="label">CV <small>(en)</small></span>
+          </a>
+          <a className="btn btn-bordered" download href="/assets/files/ru.pdf">
+            <span className="label">По-русски</span>
+          </a>
+        </div>
+
+          <Heading small title="Social Networks" />
+          <div className="nav-list">
+            <div className="nav-item nav-item-link">
+              <a className="label" href="//github.com/Carduelis" target="_blank">Github</a>
+            </div>
+            <div className="nav-item nav-item-link">
+              <a className="label" href="//vk.com/pavepy" target="_blank">Vk.com</a>
+
+            </div>
+            <div className="nav-item nav-item-link">
+              <a className="label" href="//instagram.com/Carduelis_first" target="_blank">Instagram</a>
+            </div>
+          </div>
       </div>
     );
+    // <NavListContainer />
 
     return (
       <Router>
