@@ -113,14 +113,14 @@ export function fetchProjects() {
 
 export function fetchProject(id) {
     return dispatch => {
-      const ref = firebase.database().ref('projects_full');
+      const ref = firebase.database().ref('projects_full').child(id);
 			console.log(ref);
 			// ref.child(id);
       ref.on('value', snapshot => {
         console.log('snapshot', snapshot.val());
         dispatch({
           type: FETCH_PROJECT,
-          payload: snapshot.val()
+          payload: Object.assign({}, snapshot.val(), { id })
         });
       });
     };

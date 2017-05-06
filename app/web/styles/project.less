@@ -1,5 +1,10 @@
 .about-me {
   position: relative;
+  img {
+    height: @pad*15;
+    margin-left: -@pad*3;
+    // margin-top: -@pad*2;
+  }
 }
 .avatar {
 	width: @pad*15;
@@ -9,10 +14,77 @@
 	overflow: hidden;
 	margin: @pad auto;
 	background-color: #ccc;
-	img {
-		height: @pad*15;
-		.position(absolute);
-		margin-left: -@pad*3;
-		// margin-top: -@pad*2;
-	}
+  img {
+    .position(absolute);
+  }
+}
+.image-list-wrapper {
+  width: 100%;
+}
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  > div {
+    .card;
+    flex-basis: @pad*20;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+.narration {
+  width: 100%;
+}
+.iphone-holder {
+  width: 200px;
+  padding: @pad/4;
+  background: #ccc;
+  position: relative;
+  border-radius: @pad/2;
+  padding-bottom: @pad*4;
+  &::after {
+    content: '';
+    .position(absolute, auto, 50%, @pad, auto);
+    margin-right: -@pad;
+    display: block;
+    width: @pad*2;
+    height: @pad*2;
+    border-radius: 50%;
+    background: rgba(0,0,0,.2);
+    box-shadow: inset @pad/2 @pad/2 @pad rgba(0,0,0,.2),
+      1px 1px 0 rgba(0,0,0,.4),
+      -1px -1px 0 rgba(255,255,255,.5);
+
+  }
+}
+.item-group {
+  display: flex;
+}
+
+.item-media {
+  flex-basis: 20%;
+}
+
+.marvel-device {
+  &.iphone6 {
+    width: 300px;
+  }
+  img {
+    width: 100%;
+  }
+}
+.iphone {
+  position: relative;
+  padding-top: 174.5%;
+  background: red;
+  overflow: hidden;
+  border-radius: inherit;
+
+  img {
+      .position(absolute);
+      width: 100%;
+      display: block;
+  }
 }

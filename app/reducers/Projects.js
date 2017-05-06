@@ -22,7 +22,8 @@ export default function (state = {}, action) {
     }
 		case FETCH_PROJECT: {
 				const pieceOfState = {};
-				pieceOfState[payload.id] = payload;
+				const key = payload.id;
+				pieceOfState[key] = Object.assign({}, state[key], payload);
 				return Object.assign({}, state, pieceOfState);
 			}
     default: {

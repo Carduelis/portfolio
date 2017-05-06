@@ -109,6 +109,7 @@ class ProjectsList extends Component {
       <div>
         <Modal
           title={project.title}
+          size="lg"
           subtitle={project.description}
           isOpen={activeProject}
           onClose={() => this.setState({ activeProject: false })}

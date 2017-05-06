@@ -11,6 +11,8 @@ import MdDevicesOther from 'react-icons/lib/md/devices-other';
 import MdFavorite from 'react-icons/lib/md/favorite';
 import MdFreeBreakfast from 'react-icons/lib/md/free-breakfast';
 
+import Heading from '../components/Heading';
+
 import ProjectsList from '../containers/ProjectsList';
 import AboutMe from '../containers/AboutMe';
 
@@ -24,16 +26,7 @@ class Main extends Component {
         </div>
       </div>
     );
-    const Header = ({ title, children, icon }) => (
-      <header className="centered">
-        <h2>
-          {icon && <span className="icon-lg">{icon}</span>}
-          {icon && <br />}
-          {title}
-        </h2>
-        {children}
-      </header>
-    );
+
     return (
       <div>
         <div className="content">
@@ -42,7 +35,7 @@ class Main extends Component {
         <div className="overflow-scrolling columns-custom-wrapper">
         <div className="columns columns-custom">
           <div className="column skew">
-            <Header title="Education" icon={<MdSchool />} />
+            <Heading title="Education" icon={<MdSchool />} />
             <p>I am a&nbsp;<b><abbr title="Upper bachelor degree">specialist</abbr> in Computer science</b>,
               graduated from&nbsp;
               <a
@@ -52,18 +45,17 @@ class Main extends Component {
                 target="_blank"
               >
               Moscow Technological University
-            </a>
+            </a> with a GPA of <nobr>4.98 out of 5</nobr>.
             </p>
-            <p className="silent small">During the study period (Sep&nbsp;2010 – Jul&nbsp;2015) I
- had excellent marks <nobr>4.98 out of 5</nobr>. Also I have published several scientific papers and a student book for internal use.
-I had participate in organization of conferences in the University.</p>
+            <p className="silent small">Apart from that I have published several scientific papers and a textbook with a study guide for internal use.
+I have alose participated in organization of academic conferences in the University.</p>
           </div>
           <div className="column skew">
-            <Header title="Work Experience" icon={<MdBusinessCenter />} />
+            <Heading title="Work Experience" icon={<MdBusinessCenter />} />
             <p>I started in the distant 2010,
-              so my experience counts <b className="accent">more than&nbsp;
+              so I have <b className="accent">more than&nbsp;
               {new Date().getFullYear() - 2010 - 1} years</b>.
-              It was a freelance time.
+              I have about 3 years of freelance work experience.
             </p>
             <p>From 2013 to 2015 I have developed more than&nbsp;
               <b className="accent">40&nbsp;mobile&nbsp;websites</b>.
@@ -74,27 +66,27 @@ I had participate in organization of conferences in the University.</p>
                 target="_blank"
               >eski.mobi</a>!
             </p>
-            <p>Since 2015 I work in MTU develop different Information-analytical
+            <p>Since 2015 I have been working at MTU developig Information-analytical
               systems (GIS, FAIP, Universities Data Bank)
               for <b className="accent">Ministry of Education and Science</b> of Russia
             </p>
           </div>
           <div className="column skew">
-            <Header title="Make me happy" icon={<MdFavorite />} />
+            <Heading title="Make me happy" icon={<MdFavorite />} />
             <p>Exploring new business ideas and opportunities</p>
             <ul>
               <li>Design and Front-end <MdInsertEmoticon /></li>
               <li>Espresso <MdFreeBreakfast /></li>
               <li>Cycling <MdDirectionsBike /></li>
               <li>Music <MdMusicNote /></li>
-              <li>Bacon and fried eggs <MdLocalRestaurant /></li>
+              <li>Eggs and bacon <MdLocalRestaurant /></li>
               <li>Gadgets and DIY <MdDevicesOther /></li>
             </ul>
           </div>
         </div>
         </div>
         {separator}
-        <Header title="The projects I've created" />
+        <Heading title="The projects I've created" />
         <div className="content">
           <ProjectsList />
         </div>

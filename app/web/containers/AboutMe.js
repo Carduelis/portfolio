@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import MdAttachFile from 'react-icons/lib/md/attach-file';
+import Button from '../common/Button';
+import Heading from '../components/Heading';
 
 class AboutMe extends Component {
   render() {
@@ -20,18 +23,36 @@ class AboutMe extends Component {
     return (
       <div className="about-me">
         <header className="centered">
-          <h1>Hey, I{"'"}m Pavel</h1>
+          <h1>Hey, I{"'"}m Pavel!</h1>
           <h3>Front-end developer and UI&nbsp;designer</h3>
-          <div className="avatar">
-            <img alt="me" src={coloredImg} />
-          </div>
-          <div className="text">
-          <p className="full-name">Full name:&nbsp;
-          <b>Pavel</b> Shchegolev
-          </p>
-          <p className="age">Age:&nbsp;
-          <b>{age.years} years</b>, {age.months} months and {age.days} days
-          </p>
+          <div className="row">
+            <div className="col-sm-3">
+              kek
+            </div>
+            <div className="col-sm-6">
+              <div className="avatar">
+                <img alt="me" src={coloredImg} />
+              </div>
+              <div className="text">
+                <p className="full-name">Full name:&nbsp;
+                <b>Pavel</b> Shchegolev
+                </p>
+                <p className="age">Age:&nbsp;
+                <b>{age.years} years</b>, {age.months} months and {age.days < 1 ? 2 : age.days} days
+                </p>
+              </div>
+            </div>
+            <div className="col-sm-3">
+              <Heading title="Curriculum Vitae" />
+              <div className="btn-group">
+                <a className="btn btn-bordered" download href="/assets/files/en.pdf">
+                  <span className="label">CV <small>(en)</small></span>
+                </a>
+                <a className="btn btn-bordered" download href="/assets/files/ru.pdf">
+                  <span className="label">По-русски</span>
+                </a>
+              </div>
+            </div>
           </div>
         </header>
       </div>

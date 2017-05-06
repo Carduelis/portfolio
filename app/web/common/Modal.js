@@ -39,7 +39,7 @@ export default class Modal extends Component {
       transitionAppear: true,
       transitionAppearTimeout: 500
     };
-    const { title, subtitle, children } = this.props;
+    const { title, subtitle, children, footerText } = this.props;
     return (
         <div className="modal">
             <ReactCSSTransitionGroup {...transitionBump}>
@@ -58,7 +58,7 @@ export default class Modal extends Component {
                   {children || 'Content is not presented'}
                 </section>
                 <footer className="modal-footer">
-                  kek
+                  {footerText} {subtitle}
                 </footer>
               </div>
             </ReactCSSTransitionGroup>
