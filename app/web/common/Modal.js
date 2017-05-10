@@ -4,6 +4,14 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Ink from 'react-ink';
 import Button from '../common/Button';
 
+const preventDefault = function (ev) {
+  const e = ev || window.event;
+  if (e.preventDefault) {
+		e.preventDefault();
+	}
+  e.returnValue = false;
+	return false;
+};
 
 export default class Modal extends Component {
   constructor(props) {
@@ -16,14 +24,17 @@ export default class Modal extends Component {
       this.props.onClose();
     }
   }
+	// componentWillUnmount() {
+	// 	window.onwheel = null;
+	// 	window.ontouchmove = null;
+	// }
   render() {
-    const body = document.getElementsByTagName('body')[0];
+    const html = document.getElementsByTagName('html')[0];
     if (!this.props.isOpen) {
-      body.classList.remove('modal-opened');
+      html.classList.remove('modal-opened');
       return null;
     }
-    body.classList.add('modal-opened');
-
+		html.classList.add('modal-opened');
     const transitionFade = {
       transitionName: 'fade',
       transitionEnterTimeout: 500,

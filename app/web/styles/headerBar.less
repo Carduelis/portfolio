@@ -6,6 +6,9 @@
 .header-bar {
   padding: @pad/2;
   background: @accent-background-light;
+	background: fadeout(lighten(@base,40%),5%);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
   text-align: center;
   display: flex;
   align-items: center;

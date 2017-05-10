@@ -87,13 +87,13 @@ class App extends Component {
             <Route path='/projects/:id' component={ProjectPage} />
           </MainWrapper>
             <AuthModal />
-            {!window.__REDUX_DEVTOOLS_EXTENSION__ && <DevTools />}
         </div>
       </Router>
     );
   }
 }
 
+// {!window.__REDUX_DEVTOOLS_EXTENSION__ && <DevTools />}
 
 // <Test />
 //

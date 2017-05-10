@@ -38,12 +38,12 @@ class Header extends Component {
         </div>
       );
     }
+		// autoFocus
     return (
     <form onSubmit={e => this.login(e)} className={isFetching && 'loading'}>
       <div className="input-row">
         <label htmlFor="login">Email</label>
         <input
-          autoFocus
           onChange={this.onInputChange}
           className="input"
           name="login"
