@@ -64,13 +64,14 @@ export function authModalToggle(state) {
   };
 }
 
-export function fetchProjects() {
-  const comparatorKey = 'title';
+export function fetchProjects(comparatorKey = 'authority', count = 15) {
   return dispatch => {
-    const ref = firebase.database().ref('projects').orderByChild(comparatorKey).limitToFirst(40);
+    const ref = firebase.database().ref('projects').orderByChild(comparatorKey).limitToLast(count);
     ref.on('value', snapshot => {
       const payload = snapshot.val();
-			const sortedKeys = sortedKeysBy(payload, comparatorKey);
+      const comparatorFunction = (a, b) =>
+        Number(payload[b][comparatorKey]) - Number(payload[a][comparatorKey]);
+			const sortedKeys = sortedKeysBy(payload, comparatorFunction);
       // for (let i in payload) {
       //   const project = payload[i];
       //   const { thumbnail } = project;
@@ -131,7 +132,7 @@ export function addProject(postData) {
     const rootRef = firebase.database().ref();
     const projectsRef = rootRef.child('projects');
     const newPostKey = projectsRef.push().key;
-    const updates = {}
+    const updates = {};
     updates['/projects/' + newPostKey] = postData.summary;
     updates['/projects_full/' + newPostKey] = postData.full;
     firebase.database().ref().update(updates)
@@ -144,10 +145,32 @@ export function addProject(postData) {
     .catch(error => {
       dispatch({
         type: PROJECT_ADD_ERROR,
-        error: error
+        error
+      });
+    });
+  };
+}
+
+export function editProject(id, postData) {
+  console.log(postData);
+  return dispatch => {
+    const { title, description, tags, narrative, authority } = postData;
+    const updates = {};
+    updates['/projects/' + id] = { title, description, tags, authority };
+    updates['/projects_full/' + id] = { narrative };
+    firebase.database().ref().update(updates)
+    .then(payload => {
+      dispatch({
+        type: PROJECT_ADDED,
+        payload
       });
     })
-
+    .catch(error => {
+      dispatch({
+        type: PROJECT_ADD_ERROR,
+        error
+      });
+    });
   };
 }
 

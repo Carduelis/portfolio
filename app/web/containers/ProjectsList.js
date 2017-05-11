@@ -16,16 +16,39 @@ class ProjectsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeProject: false
+      activeProject: false,
+      loading: true,
+      showButton: true
     };
   }
   componentWillMount() {
     this.props.fetchProjects();
+
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      });
+    }, 1000);
   }
-  onAddProject(e) {
+  onAddProject() {
     this.props.addProject();
   }
-
+  transformCard(id) {
+    this.setState({
+      activeProject: id
+    });
+  }
+  toggleProjectList() {
+    this.setState({
+      loading: true
+    });
+    setTimeout(() => {
+      this.setState({
+        showButton: false
+      });
+    }, 1000);
+    this.props.fetchProjects('authority', 40);
+  }
   renderProjects() {
     const projectsData = this.props.projects;
     return projectsData.map((project, i) => (
@@ -36,11 +59,6 @@ class ProjectsList extends Component {
           />
       )
     );
-  }
-  transformCard(id) {
-    this.setState({
-      activeProject: id
-    });
   }
   render() {
     // const tags = [
@@ -118,6 +136,23 @@ class ProjectsList extends Component {
 					{activeProject && <Project {...project} id={activeProject} />}
         </Modal>
         <Grid {...gridProps} />
+        {this.state.showButton &&
+          <center>
+            <br />
+            <br />
+            <Button
+              fill
+              loading={this.state.loading}
+              size="lg"
+              type="success"
+              label="Show me more awesome projects"
+              handleClick={() => this.toggleProjectList()}
+            />
+            <br />
+            <br />
+          </center>
+        }
+
         <ProjectAdd />
       </div>
     );

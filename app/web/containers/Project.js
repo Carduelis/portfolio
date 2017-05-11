@@ -4,6 +4,7 @@ import MdAdd from 'react-icons/lib/md/add';
 import { fetchProject } from '../../actions/firebase';
 import Heading from '../components/Heading';
 import Iphone from '../components/Iphone';
+import ProjectEdit from '../containers/ProjectEdit';
 
 class Project extends Component {
 	componentWillMount() {
@@ -32,6 +33,7 @@ class Project extends Component {
 		const theProject = this.props.projects[id] || {};
 		return (
 			<div className="narration">
+				<ProjectEdit />
 				<div className="item-group">
 					<div className="item-media">
 						<Iphone>
